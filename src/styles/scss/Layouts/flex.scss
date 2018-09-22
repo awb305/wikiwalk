@@ -1,0 +1,31 @@
+/*---flex Layout---*/
+@mixin flex {
+  display: flex;
+}
+
+.flex-center {
+  @include flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  @include flex;
+  flex-direction: column;
+}
+
+.flex-distribute {
+  @include flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-wrap {
+  flex-flow: flex-wrap;
+}
+
+.flex-distribute-text {
+  @include flex;
+  justify-content: space-around;
+  align-items: baseline;
+}

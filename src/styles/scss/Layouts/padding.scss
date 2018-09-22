@@ -1,0 +1,121 @@
+/*---padding sizes---*/
+.p-xsm {
+  padding: $xsmall;
+}
+
+.p-sm {
+  padding: $small;
+}
+
+.p-md {
+  padding: $medium;
+}
+
+.p-lg {
+  padding: $large;
+}
+
+.p-xlg {
+  padding: xlarge;
+}
+
+.p-xsm-right {
+  padding-right: $xsmall;
+}
+
+.p-sm-right {
+  padding-right: $small;
+}
+
+.p-md-right {
+  padding-right: $medium;
+}
+
+.p-lg-right {
+  padding-right: $large;
+}
+
+.p-xlg-right {
+  padding-right: $xlarge;
+}
+
+.p-xsm-left {
+  padding-left: $xsmall;
+}
+
+.p-sm-left {
+  padding-left: $small;
+}
+
+.p-md-left {
+  padding-left: $medium;
+}
+
+.p-lg-left {
+  padding-left: $large;
+}
+
+.p-xlg-left {
+  padding-left: $xlarge;
+}
+
+.p-xsm-top {
+  padding-top: $xsmall;
+}
+
+.p-sm-top {
+  padding-top: $small;
+}
+
+.p-md-top {
+  padding-top: $medium;
+}
+
+.p-lg-top {
+  padding-top: $large;
+}
+
+.p-xlg-top {
+  padding-top: $xlarge;
+}
+
+.p-xsm-bottom {
+  padding-bottom: $xsmall;
+}
+
+.p-sm-bottom {
+  padding-bottom: $small;
+}
+
+.p-md-bottom {
+  padding-bottom: $medium;
+}
+
+.p-lg-bottom {
+  padding-bottom: $large;
+}
+
+.p-xlg-bottom {
+  padding-bottom: $xlarge;
+}
+
+/*---remove padding---*/
+.paddingless {
+  padding: 0px;
+}
+
+.p-less-top {
+  padding-top: 0px;
+}
+
+.p-less-bottom {
+  padding-bottom: 0px;
+}
+
+.p-less-right {
+  padding-right: 0px;
+}
+
+.p-less-left {
+  padding-left: 0px;
+}
