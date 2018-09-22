@@ -1,0 +1,21 @@
+/*---rem sizes---*/
+html {
+  /*-10px-*/
+  font-size: 62.5%
+}
+body {
+  /*-14px-*/
+  font-size: 1.4rem;
+}
+
+$xsmall: 0.5rem;
+$small: 1rem;
+$medium: 1.5rem;
+$large: 2rem;
+$xlarge: 3rem;
+
+/*---images---*/
+img {
+  max-width: 100%;
+  height: auto;
+}
