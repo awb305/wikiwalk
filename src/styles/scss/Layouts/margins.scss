@@ -1,0 +1,121 @@
+/*---margins---*/
+.m-xsm {
+  margin: $xsmall;
+}
+
+.m-sm {
+  margin: $small;
+}
+
+.m-md {
+  margin: $medium;
+}
+
+.m-lg {
+  margin: $large;
+}
+
+.m-xlg {
+  margin: $xlarge;
+}
+
+.m-xsm-right {
+  margin-right: $xsmall;
+}
+
+.m-sm-right {
+  margin-right: $small;
+}
+
+.m-md-right {
+  margin-right: $medium;
+}
+
+.m-lg-right {
+  margin-right: $large;
+}
+
+.m-xlg-right {
+  margin-right: $xlarge;
+}
+
+.m-xsm-left {
+  margin-left: $xsmall;
+}
+
+.m-sm-left {
+  margin-left: $small;
+}
+
+.m-md-left {
+  margin-left: $medium;
+}
+
+.m-lg-left {
+  margin-left: $large;
+}
+
+.m-xlg-left {
+  margin-left: $xlarge;
+}
+
+.m-xsm-top {
+  margin-top: $xsmall;
+}
+
+.m-sm-top {
+  margin-top: $small;
+}
+
+.m-md-top {
+  margin-top: $medium;
+}
+
+.m-lg-top {
+  margin-top: $large;
+}
+
+.m-xlg-top {
+  margin-top: $xlarge;
+}
+
+.m-xsm-bottom {
+  margin-bottom: $xsmall;
+}
+
+.m-sm-bottom {
+  margin-bottom: $small;
+}
+
+.m-md-bottom {
+  margin-bottom: $medium;
+}
+
+.m-lg-bottom {
+  margin-bottom: $large;
+}
+
+.m-xlg-bottom {
+  margin-bottom: $xlarge;
+}
+
+/*---remove margins---*/
+.marginless {
+  margin: 0px;
+}
+
+.m-less-top {
+  margin-top: 0px;
+}
+
+.m-less-bottom {
+  margin-bottom: 0px;
+}
+
+.m-less-right {
+  margin-right: 0px;
+}
+
+.m-less-left {
+  margin-left: 0px;
+}
