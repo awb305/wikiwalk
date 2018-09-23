@@ -34,16 +34,45 @@ class Sample extends Component {
           geoArray: geoArray,
           idArray: idArray
         });
+        return idArray;
       })
-      .catch(err => console.log(err));
-    API.idSearch(this.state.idArray)
-      .then(res => console.log(res))
+      .then(idArray => {
+        API.idSearch(idArray).then(res => {
+          console.log('hi', res.data.query.pages);
+          const content = res.data.query.pages;
+          this.setState({
+            content: content
+          });
+        });
+      })
       .catch(err => console.log(err));
   };
 
+  renderContent = () => {
+    const contentArray = [];
+    for (const key in this.state.content) {
+      if (this.state.content.hasOwnProperty(key)) {
+        const element = this.state.content[key];
+        contentArray.push(element.extract);
+      }
+    }
+    return contentArray;
+  };
+
   render() {
-    return <div>Check the console</div>;
+    let contentArray = this.renderContent();
+    let content = contentArray.map(location => {
+      console.log(location);
+      return (
+        <div>
+          <div>{location}</div>
+          <hr />
+        </div>
+      );
+    });
+    console.log(content);
+
+    return <div>{content}</div>;
   }
 }
-
 export default Sample;
