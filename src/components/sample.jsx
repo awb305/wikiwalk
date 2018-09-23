@@ -5,7 +5,11 @@ class Sample extends Component {
   state = {
     geoArray: [],
     idArray: [],
-    content: {}
+    content: {},
+    lon: 35.7796,
+    lat: -78.6382,
+    radius: 1000,
+    limit: 10
   };
 
   componentDidMount() {
@@ -23,7 +27,12 @@ class Sample extends Component {
   };
 
   search = () => {
-    API.geoSearch()
+    API.geoSearch(
+      this.state.lon,
+      this.state.lat,
+      this.state.radius,
+      this.state.limit
+    )
       .then(res => {
         const geoArray = res.data.query.geosearch;
         const idArray = [];
