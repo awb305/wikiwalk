@@ -53,7 +53,7 @@ class Sample extends Component {
     for (const key in this.state.content) {
       if (this.state.content.hasOwnProperty(key)) {
         const element = this.state.content[key];
-        contentArray.push(element.extract);
+        contentArray.push(element);
       }
     }
     return contentArray;
@@ -64,8 +64,9 @@ class Sample extends Component {
     let content = contentArray.map(location => {
       console.log(location);
       return (
-        <div>
-          <div>{location}</div>
+        <div key={location.pageid}>
+          <h1>{location.title}</h1>
+          <div>{location.extract}</div>
           <hr />
         </div>
       );
