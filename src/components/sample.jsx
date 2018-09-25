@@ -6,8 +6,8 @@ class Sample extends Component {
     geoArray: [],
     idArray: [],
     content: {},
-    lon: 35.7796,
-    lat: -78.6382,
+    lon: 43.7696,
+    lat: 11.2558,
     radius: 1000,
     limit: 10
   };
