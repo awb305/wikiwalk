@@ -1,10 +1,16 @@
 import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
 
 const theme = createMuiTheme({
   palette: {
-    primary: green
+    primary: {
+      main: '#458fb4',
+      light: '#e2edf3'
+    },
+
+    secondary: {
+      main: '#edca24'
+    }
   }
 });
 
