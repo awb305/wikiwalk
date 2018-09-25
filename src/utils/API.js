@@ -6,7 +6,7 @@ export default {
 
   geoSearch: function (lon, lat, radius, limit) {
     console.log(lon, lat);
-    let url = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=geosearch&gscoord=" + lon + "|" + lat + "&gsradius=" + radius + "&gslimit=" + limit
+    let url = "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=geosearch&gscoord=" + lon + "|" + lat + "&gsradius=" + radius + "&gslimit=" + limit
 
     return new Promise(function (resolve, reject) {
       return axios.get(url)
@@ -21,7 +21,7 @@ export default {
   },
   idSearch: function (array) {
     console.log(array);
-    let url = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&prop=info|extracts&inprop=url&redirects=1&pageids="
+    let url = "https://en.wikipedia.org/w/api.php?format=json&action=query&origin=*&prop=extracts&exintro&explaintext&prop=info|extracts&inprop=url&redirects=1&pageids="
     array.forEach(element => {
       url += "|" + element;
     });
