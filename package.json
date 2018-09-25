@@ -12,7 +12,7 @@
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/styles/scss/styles.scss -o src/styles/css --include-path ./src --include-path ./node_modules",
-    "watch-css": "npm run buildcss &&& node-sass-chokidar src/styles/scss/styles.scss -o src/styles/css --watch --recursive --include-path ./src --include-path ./node_modules",
+    "watch-css": "npm run build-css && node-sass-chokidar src/styles/scss/styles.scss -o src/styles/css --watch --recursive --include-path ./src --include-path ./node_modules",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "react-scripts build",
