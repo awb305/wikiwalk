@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Wrapper from './components/Wrapper';
 import Theme from './Theme';
+import Sample from './components/Sample'
 
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
           <CssBaseline />
           <Wrapper />
         </React.Fragment>
+        <Sample></Sample>
       </Theme>
     );
   }
