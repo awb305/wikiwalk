@@ -1,5 +1,26 @@
-/*---horizontal and vertical centering---*/
 
+@mixin clearfix {
+  &:after {
+    display: table;
+    content: '';
+    clear: both;
+  }
+}
+
+.float-right {
+  @include clearfix;
+  display: inline-block;
+  float: right;
+}
+
+.float-left {
+  @include clearfix;
+  display: inline-block;
+  float: left;
+}
+
+
+/*---horizontal and vertical centering---*/
 .center {
   position: relative;
   .centered {
