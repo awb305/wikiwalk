@@ -28,13 +28,14 @@ class Navbar extends React.Component  {
     return (
       <div className={ classes.root }>
         <AppBar
-          color="primary">
+          color="primary"
+        >
   
           <Toolbar>
             <Logo color="secondary" />
   
             <div className={ classes.grow }>
-              <Typography variant="title" color="inherit" className="m-sm-left">
+              <Typography variant="display1" color="inherit" className="m-sm-left">
                 Wiki Walking Tours
               </Typography>
             </div>
