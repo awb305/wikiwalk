@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Logo from './../Logo';
 import UserMenu from './Popover';
 import './../../styles/css/styles.css';
+import Auth0 from './auth0';
 
 const styles = () =>({
   root: {
@@ -16,6 +17,8 @@ const styles = () =>({
     flexGrow: 1
   }
 });
+
+
 
 
 class Navbar extends React.Component  {
@@ -36,7 +39,7 @@ class Navbar extends React.Component  {
               </Typography>
             </div>
   
-          <UserMenu />
+          <Auth0 />
   
           </Toolbar>
         </AppBar>
