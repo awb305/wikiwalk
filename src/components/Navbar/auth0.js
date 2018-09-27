@@ -19,9 +19,6 @@ class Auth0 extends Component {
     props.history.replace('/');
   };
 
- 
-
-
   signIn = () => {
     console.log("sign in called");
     auth0Client.signIn();
