@@ -40,7 +40,7 @@ class Navbar extends React.Component  {
               </Typography>
             </div>
   
-          <Auth0 />
+          <Auth0 getId={this.props.getId} />
   
           </Toolbar>
         </AppBar>

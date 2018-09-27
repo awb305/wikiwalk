@@ -34,7 +34,7 @@ class Home extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <Navbar />
+        <Navbar getId={this.props.getId} />
         <Grid container 
           direction="column" 
           justify="center" 
