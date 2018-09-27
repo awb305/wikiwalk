@@ -10,7 +10,7 @@ import './../../styles/css/styles.css';
 
 const styles = theme =>({
   root: {
-    flexGrow: 1
+    flexGrow: 1, 
   },
   grow: {
     flexGrow: 1
