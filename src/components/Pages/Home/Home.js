@@ -32,6 +32,7 @@ class Home extends React.Component {
 
   render() {
     const { classes } = this.props;
+    console.log(this.props.getId);
     return (
       <div>
         <Navbar getId={this.props.getId} />
@@ -42,7 +43,9 @@ class Home extends React.Component {
           alignContent="center"
           style={{height: this.state.viewport.height+'px'}}>
           <Grid item className={classes.pBottom}>
-            <CoolBtn />
+          <div className="sensorItem" onClick={this.props.getId}>
+            <CoolBtn getId={this.props.getId}/>
+            </div>
           </Grid>
           <Grid item className={classes.pBottom}>
             <Typography variant="display1" align="center">

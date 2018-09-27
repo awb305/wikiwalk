@@ -13,7 +13,7 @@ import PersonIcon from '@material-ui/icons/PersonOutlined';
 import FavoriteIcon from '@material-ui/icons/FavoriteOutlined';
 import UserIcon from './UserIcon';
 import Auth0 from './auth0';
-import auth0Client from '../../Auth'
+import auth0Client from '../../utils/Auth'
 const jwt = require('jsonwebtoken');
 
 const getUser = () => {

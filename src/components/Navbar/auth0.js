@@ -1,7 +1,7 @@
-import {React, Component} from 'react';
+import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
-import auth0Client from '../../Auth';
+import auth0Client from '../../utils/Auth';
 const jwt = require('jsonwebtoken');
 
 class Auth0 extends Component {
@@ -19,17 +19,26 @@ class Auth0 extends Component {
     props.history.replace('/');
   };
 
+ 
+
+
+  signIn = () => {
+    console.log("sign in called");
+    auth0Client.signIn();
+
+  }
+
   render() {
+    console.log(this.props.getId);
     return (
       <div>
         {
           !auth0Client.isAuthenticated() &&
-          <ListItem button onClick={auth0Client.signIn}>Sign In</ListItem>
+          <ListItem button onClick={this.signIn}>Sign In</ListItem>
         }
         {
           auth0Client.isAuthenticated() &&
           <div>
-            {this.props.getId()}
             <ListItem button onClick={() => {this.signOut()}}>Sign Out</ListItem>
           </div>
         }

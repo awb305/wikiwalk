@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Callback from '../../Callback';
 import Home from './../Pages/Home';
-import auth0Client from '../../Auth';
+import auth0Client from '../../utils/Auth';
 const jwt = require('jsonwebtoken');
 
 class Wrapper extends React.Component {
@@ -20,6 +20,8 @@ class Wrapper extends React.Component {
       auth: decodedObj.sub
     });
   };
+
+
   render() {
     return (
       <Router>

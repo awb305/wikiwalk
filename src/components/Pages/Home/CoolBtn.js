@@ -20,6 +20,7 @@ const styles = theme => ({
 const CoolBtn = props => {
   const { classes } = props;
   return (
+    <div className="sensorItem">
     <Button 
       variant="fab"
       className={classes.coolBtn}
@@ -31,6 +32,7 @@ const CoolBtn = props => {
         <br />Near Me
       </Typography>
     </Button>
+    </div>
   );
 };
 
