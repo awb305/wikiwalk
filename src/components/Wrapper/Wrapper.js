@@ -1,12 +1,14 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import Home from './../Pages/Home';
+import Results from './../Pages/Results';
+
 
 class Wrapper extends React.Component {
   render() {
     return (
       <div>
-        <Home />
+        <Results favs={true} />
+        {/* <Home /> */}
       </div>
     )
   }

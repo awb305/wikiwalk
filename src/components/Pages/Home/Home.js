@@ -5,12 +5,14 @@ import CoolBtn from './CoolBtn';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import SearchBar from './../../SearchBar';
+//import Paper from '@material-ui/core/Paper';
 
 
 const styles = theme => ({
   pBottom: {
     paddingBottom: '5rem'
   }
+  
 });
 
 class Home extends React.Component {

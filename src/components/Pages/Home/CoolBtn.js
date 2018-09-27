@@ -14,8 +14,13 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     padding: '0.75rem',
-  }
+    "&:hover": {
+      backgroundColor: theme.palette.secondary.main
+    }
+  },
+  
 });
+
 
 const CoolBtn = props => {
   const { classes } = props;
