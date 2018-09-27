@@ -1,12 +1,12 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import Navbar from './../Navbar';
+import Home from './../Pages/Home';
 
 class Wrapper extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Home />
       </div>
     )
   }
