@@ -25,7 +25,7 @@ class Navbar extends React.Component  {
 
   render() {
     const { classes } = this.props;
-    console.log(this.props.getId);
+    console.log(this.props.setId);
     return (
       <div className={ classes.root }>
         <AppBar
@@ -41,7 +41,7 @@ class Navbar extends React.Component  {
               </Typography>
             </div>
   
-          <Auth0 getId={this.props.getId} />
+          <Auth0 setId={this.props.setId} />
   
           </Toolbar>
         </AppBar>
