@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import auth0Client from '../../utils/Auth';
-const jwt = require('jsonwebtoken');
 
 class Auth0 extends Component {
+<<<<<<< HEAD
   signOut = props => {
     auth0Client.signOut();
     props.history.replace('/');
@@ -19,6 +19,13 @@ class Auth0 extends Component {
       this.forceUpdate;
     }
   };
+=======
+  
+  // signOut = () => {
+  //   auth0Client.signOut();
+  //   props.history.replace('/');
+  // };
+>>>>>>> a195a5ef6735ab57959e961153eba74d050efc05
 
   render() {
     console.log(this.props.userId);
@@ -32,12 +39,16 @@ class Auth0 extends Component {
         )}
         {auth0Client.isAuthenticated() && (
           <div>
+<<<<<<< HEAD
             <ListItem
               button
               onClick={this.LoginHandler}
             >
               Sign Out
             </ListItem>
+=======
+            <ListItem button onClick={auth0Client.signOut}>Sign Out</ListItem>
+>>>>>>> a195a5ef6735ab57959e961153eba74d050efc05
           </div>
         )}
       </div>

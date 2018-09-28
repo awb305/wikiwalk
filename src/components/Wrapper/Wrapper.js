@@ -6,7 +6,7 @@ import {
 import Callback from '../../Callback';
 import Home from '../Pages/Home';
 import auth0Client from '../../utils/Auth';
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
 class Wrapper extends React.Component {
   state = {
