@@ -8,13 +8,14 @@ import Logo from './../Logo';
 import UserMenu from './Popover';
 import './../../styles/css/styles.css';
 
-const styles = () =>({
+const styles = theme =>({
   root: {
-    flexGrow: 1
+    flexGrow: 1, 
   },
   grow: {
     flexGrow: 1
-  }
+  },
+  toolbar: theme.mixins.toolbar
 });
 
 
@@ -27,7 +28,6 @@ class Navbar extends React.Component  {
         <AppBar
           color="primary"
         >
-  
           <Toolbar>
             <Logo color="secondary" />
   
@@ -41,6 +41,7 @@ class Navbar extends React.Component  {
   
           </Toolbar>
         </AppBar>
+        <div className={classes.toolbar} />
       </div>
     );
   }
