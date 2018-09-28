@@ -8,6 +8,7 @@ import Home from '../Pages/Home';
 import auth0Client from '../../utils/Auth';
 import jwt from 'jsonwebtoken';
 import Sample from '../Sample';
+import Results from '../Pages/Results';
 
 class Wrapper extends React.Component {
   state = {
@@ -76,7 +77,8 @@ class Wrapper extends React.Component {
       setPage={this.setPage}
       /> ;
     }else if(this.state.page === 'results'){
-      return<Sample></Sample>
+      
+      return<Results></Results>
     }
   }
 }
