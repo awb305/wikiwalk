@@ -5,6 +5,8 @@ import CoolBtn from './CoolBtn';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import SearchBar from '../../SearchBar';
+import API from '../../../utils/API';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   pBottom: {
@@ -32,6 +34,10 @@ class Home extends React.Component {
     this.setState({ query: value });
   };
 
+  api = () => {
+
+  }
+
   render() {
     const { classes } = this.props;
     console.log(this.props.userId);
@@ -47,7 +53,9 @@ class Home extends React.Component {
           style={{ height: this.state.viewport.height + 'px' }}
         >
           <Grid item className={classes.pBottom}>
+          <Link to="/sample">
             <CoolBtn />
+            </Link>
           </Grid>
           <Grid item className={classes.pBottom}>
             <Typography variant="display1" align="center">

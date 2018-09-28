@@ -7,7 +7,7 @@ class Sample extends Component {
     idArray: [],
     content: {},
     lon: 35.2271,
-    lat: -90.8431,
+    lat: -80.8431,
     radius: 1000,
     limit: 10
   };

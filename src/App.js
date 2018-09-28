@@ -15,6 +15,7 @@ class App extends Component {
           <Router>
             <div>
               <Route exact path="/" component={Wrapper} />
+              <Route exact path="/sample" component={Sample} />
               <Route exact path="/callback" component={Callback} />
             </div>
           </Router>

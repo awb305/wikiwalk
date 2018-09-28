@@ -4,12 +4,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
-<<<<<<< HEAD
 import Logo from '../Logo';
 import UserMenu from './Popover';
-=======
-import Logo from './../Logo';
->>>>>>> a195a5ef6735ab57959e961153eba74d050efc05
 import './../../styles/css/styles.css';
 import Auth0 from './auth0';
 
