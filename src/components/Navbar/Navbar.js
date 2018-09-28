@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 import Logo from './../Logo';
-import UserMenu from './Popover';
 import './../../styles/css/styles.css';
 import Auth0 from './auth0';
 
