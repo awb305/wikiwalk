@@ -5,7 +5,7 @@ import auth0Client from './utils/Auth';
 class Callback extends Component {
   async componentDidMount() {
     await auth0Client.handleAuthentication();
-    this.props.history.replace('/');
+    this.props.history.replace('/user');
   }
 
   render() {

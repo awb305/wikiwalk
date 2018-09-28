@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Button from '@material-ui/core/Button'
 import auth0Client from '../../utils/Auth';
+import Popover from './Popover';
 
 class Auth0 extends Component {
   
@@ -16,12 +19,16 @@ class Auth0 extends Component {
       <div>
         {
           !auth0Client.isAuthenticated() &&
-          <ListItem button onClick={auth0Client.signIn}>Sign In</ListItem>
+          <Button color="secondary" variant="contained" onClick={auth0Client.signIn}>Sign In</Button>
         }
         {
           auth0Client.isAuthenticated() &&
           <div>
-            <ListItem button onClick={auth0Client.signOut}>Sign Out</ListItem>
+            <Popover>
+              <ListItem button onClick={auth0Client.signOut}>
+                <ListItemText primary="Sign Out" />
+              </ListItem>
+            </Popover>
           </div>
         }
       </div>

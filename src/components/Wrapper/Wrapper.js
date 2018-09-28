@@ -4,6 +4,7 @@ import Callback from '../../Callback';
 import Home from './../Pages/Home';
 import auth0Client from '../../utils/Auth';
 import jwt from 'jsonwebtoken';
+import Landing from './../Pages/Landing';
 
 class Wrapper extends React.Component {
   state = {
@@ -65,7 +66,7 @@ getId = () => {
     
     return (
 
-      <Home></Home>
+      <Landing></Landing>
 
     
     )

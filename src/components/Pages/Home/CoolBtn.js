@@ -29,6 +29,7 @@ const CoolBtn = props => {
     <Button 
       variant="fab"
       className={classes.coolBtn}
+      onClick={props.click}
     >
       <Typography variant="display3" color="inherit" align="center">
         Show Me

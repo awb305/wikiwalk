@@ -18,11 +18,28 @@ const styles = theme => ({
 class Home extends React.Component {
   state = {
     viewport: { width: window.innerWidth, height: window.innerHeight},
-    query: 'Location'
+    query: 'Location',
+    data: {
+      geoArray: [],
+      idArray: [],
+      content: {},
+      lon: 35.2271,
+      lat: -90.8431,
+      radius: 1000,
+      limit: 10
+    }
   }
 
   componentWillMount() {
     this.setState({width: window.innerWidth + 'px', height: window.innerHeight + 'px'});
+  }
+
+  search = data => {
+    console.log(data);
+  }
+
+  handleClick = () =>{
+    this.search(this.state.data);
   }
 
   handleInputChange = event => {
@@ -45,7 +62,7 @@ class Home extends React.Component {
           style={{height: this.state.viewport.height+'px'}}>
           <Grid item className={classes.pBottom}>
           <div onClick={this.props.setId}>
-            <CoolBtn/>
+            <CoolBtn click={this.handleClick}/>
             </div>
           </Grid>
           <Grid item className={classes.pBottom}>
