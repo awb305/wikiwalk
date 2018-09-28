@@ -78,7 +78,11 @@ class Wrapper extends React.Component {
       /> ;
     }else if(this.state.page === 'results'){
       
-      return<Results></Results>
+      return<Results logout = {
+        this.logout
+      }
+      userId={this.state.userId}
+       ></Results>
     }
   }
 }

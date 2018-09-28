@@ -64,6 +64,7 @@ class Results extends Component {
         API.idSearch(idArray).then(res => {
           console.log('hi', res.data.query.pages);
           const content = res.data.query.pages;
+          delete content[0];
           this.setState({
             content: content
           });
@@ -98,7 +99,7 @@ let content = contentArray.map(article => {
 });
 return(
       <div>
-        <Navbar />
+        <Navbar logout={this.props.logout} userId={this.props.userId} />
         <div className={ classes.toolbar }>
         <Typography variant="display2" className={classes.header}>
           {favs ? "Favorites" : "Results"}
