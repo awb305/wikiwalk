@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import SearchBar from '../../SearchBar';
 import API from '../../../utils/API';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
 
 const styles = theme => ({
   pBottom: {
@@ -34,8 +35,9 @@ class Home extends React.Component {
     this.setState({ query: value });
   };
 
-  api = () => {
-
+  sampleRedirect = () =>{
+    this.props.setPage("results");
+    return <Redirect to= '/' />;
   }
 
   render() {
@@ -53,9 +55,9 @@ class Home extends React.Component {
           style={{ height: this.state.viewport.height + 'px' }}
         >
           <Grid item className={classes.pBottom}>
-          <Link to="/sample">
+          <div onClick={this.sampleRedirect}>
             <CoolBtn />
-            </Link>
+           </div> 
           </Grid>
           <Grid item className={classes.pBottom}>
             <Typography variant="display1" align="center">

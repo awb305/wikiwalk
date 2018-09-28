@@ -7,10 +7,15 @@ import Callback from '../../Callback';
 import Home from '../Pages/Home';
 import auth0Client from '../../utils/Auth';
 import jwt from 'jsonwebtoken';
+import Sample from '../Sample';
 
 class Wrapper extends React.Component {
   state = {
-    userId: 'loggedOut'
+    userId: 'loggedOut',
+    page: "home",
+    lon: 35.2271,
+    lat: -80.8431,
+
   };
 
   getId = () => {
@@ -40,6 +45,13 @@ class Wrapper extends React.Component {
     this.setState({
       userId: 'loggedOut'
     })
+  };
+
+  setCoords = (lon, lat) => {
+    this.setState({
+      lon: lon,
+      lat: lat
+    })
   }
 
   componentDidMount() {
@@ -48,12 +60,24 @@ class Wrapper extends React.Component {
     }
   }
 
+  setPage = (page) => {
+    this.setState({
+      page: page
+    })
+  }; 
+
   render() {
-    return <Home logout = {
-      this.logout
-    } 
-    userId={this.state.userId}
-    /> ;
+    if(this.state.page === 'home'){
+      return <Home logout = {
+        this.logout
+      } 
+      userId={this.state.userId}
+      setCoords={this.setCoords}
+      setPage={this.setPage}
+      /> ;
+    }else if(this.state.page === 'results'){
+      return<Sample></Sample>
+    }
   }
 }
 
