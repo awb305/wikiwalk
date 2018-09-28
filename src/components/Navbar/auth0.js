@@ -19,22 +19,33 @@ class Auth0 extends Component {
     props.history.replace('/');
   };
 
+
+
+//  /*  signIn = () => {
+//     auth0Client.signIn();
+//   } */
  
+//   setUserId = async () => {
+//     const loginStatus = await new Promise ((resolve, reject) => {
+//       auth0Client.signIn();
 
-
-  signIn = () => {
-    console.log("sign in called");
-    auth0Client.signIn();
-
-  }
+//       if(){
+//         resolve(this.props.setId);
+//       }else{
+//         reject("something went wrong");
+//       }
+//     });
+//     /* this.signIn.then(this.props.setId); */
+//     console.log(loginStatus);
+//   }
 
   render() {
-    console.log(this.props.getId);
+   
     return (
       <div>
         {
           !auth0Client.isAuthenticated() &&
-          <ListItem button onClick={this.signIn}>Sign In</ListItem>
+          <ListItem button onClick={auth0Client.signIn}>Sign In</ListItem>
         }
         {
           auth0Client.isAuthenticated() &&
