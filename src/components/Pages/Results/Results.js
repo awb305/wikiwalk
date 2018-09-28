@@ -16,9 +16,11 @@ const styles = theme => ({
 let cards = []
 const results = [
   {
+  pageId: 'a number',
+  userId: 'userid',
   title: 'Insert Title Here',
   body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  breadcrum: 'Breadcrumb goes here',
+  breadcrum: 'Saved on 09/27/2018 location: Raleigh, NC',
   url: '#',
   favorited: true
   },{

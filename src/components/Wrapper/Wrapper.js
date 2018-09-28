@@ -1,5 +1,5 @@
 import React from 'react';
-//import Home from './../Pages/Home';
+import Home from './../Pages/Home';
 //import Results from './../Pages/Results';
 import Landing from './../Pages/Landing';
 
@@ -9,8 +9,8 @@ class Wrapper extends React.Component {
     return (
       <div>
         {/* <Results favs={true} /> */}
-        {/* <Home /> */}
-        <Landing />
+        <Home />
+        {/* <Landing /> */}
       </div>
     )
   }

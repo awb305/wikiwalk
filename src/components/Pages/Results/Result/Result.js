@@ -43,8 +43,10 @@ class Header extends React.Component {
   handleClick = event => {
     if(this.state.favorited){
       this.setState({favorited: false});
+      //delete call
     }else{
       this.setState({favorited: true});
+      //post call
     }
   }
 
