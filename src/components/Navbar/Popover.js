@@ -10,8 +10,18 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import PersonIcon from '@material-ui/icons/PersonOutlined';
 import FavoriteIcon from '@material-ui/icons/FavoriteOutlined';
-
 import UserIcon from './UserIcon';
+import Auth0 from './auth0';
+import auth0Client from '../../utils/Auth'
+const jwt = require('jsonwebtoken');
+
+const getUser = () => {
+  let token = auth0Client.getIdToken();
+  let decodedObj = jwt.decode(token)
+  let user = decodedObj.nickname;
+  return user;
+};
+
 
 const styles = theme => ({
   root: {
@@ -20,7 +30,6 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper
   }
 });
-
 
 class UserMenu extends React.Component {
   state = {
@@ -76,9 +85,9 @@ class UserMenu extends React.Component {
                 <ListItemIcon>
                   <PersonIcon />
                 </ListItemIcon>
-                <ListItemText primary="Logged in as [User]" />
+                <ListItemText primary="Logged in as [User]"/>
+                <Divider />
               </ListItem>
-              <Divider />
               <ListItem button>
                 <ListItemIcon>
                   <FavoriteIcon />
@@ -86,9 +95,7 @@ class UserMenu extends React.Component {
                 <ListItemText primary="Saved" />
               </ListItem>
               <Divider />
-              <ListItem button>
-                <ListItemText primary="Logout" />
-              </ListItem>
+              <Auth0 />
             </List>
           </div>
         </Popover>

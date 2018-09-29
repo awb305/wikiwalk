@@ -4,10 +4,10 @@ import axios from "axios";
 export default {
 
 
-  geoSearch: function (lon, lat, radius, limit) {
+  geoSearch: function (lat, lon, radius, limit) {
     console.log(lon, lat);
-    let url = "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=geosearch&gscoord=" + lon + "|" + lat + "&gsradius=" + radius + "&gslimit=" + limit
-
+    let url = "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=geosearch&gscoord=" + lat + "|" + lon + "&gsradius=" + radius + "&gslimit=" + limit
+    console.log(url);
     return new Promise(function (resolve, reject) {
       return axios.get(url)
         .then(function (res) {
@@ -29,3 +29,5 @@ export default {
     return axios.get(url);
   }
 };
+
+// https://en.wikipedia.org/w/api.php?action=query&format=json&list=geosearch&gscoord=35.789260899999995%7C-78.63376939999999&gsradius=10000&gslimit=10
