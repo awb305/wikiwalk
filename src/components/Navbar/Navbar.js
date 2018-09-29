@@ -4,7 +4,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
-import Logo from './../Logo';
+import Logo from '../Logo';
+import UserMenu from './Popover';
 import './../../styles/css/styles.css';
 import Auth0 from './auth0';
 
@@ -18,14 +19,10 @@ const styles = theme =>({
   toolbar: theme.mixins.toolbar
 });
 
-
-
-
-class Navbar extends React.Component  {
-
+class Navbar extends React.Component {
   render() {
     const { classes } = this.props;
-    console.log(this.props.setId);
+    console.log(this.props.userId);
     return (
       <div className={ classes.root }>
         <AppBar
@@ -33,24 +30,22 @@ class Navbar extends React.Component  {
         >
           <Toolbar>
             <Logo color="secondary" />
-  
-            <div className={ classes.grow }>
-              <Typography variant="display1" color="inherit" className="m-sm-left">
+            <div className={classes.grow}>
+              <Typography
+                variant="display1"
+                color="inherit"
+                className="m-sm-left"
+              >
                 Wiki Walking Tours
               </Typography>
             </div>
-  
-          <Auth0 setId={this.props.setId} />
-  
+            <Auth0 logout={this.props.logout} userId={this.props.userId}/>
           </Toolbar>
         </AppBar>
         <div className={classes.toolbar} />
       </div>
     );
   }
-  
 }
-
-
 
 export default withStyles(styles, { withTheme: true })(Navbar);
