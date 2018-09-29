@@ -1,9 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Callback from '../../Callback';
-import Home from './../Pages/Home';
-import auth0Client from '../../utils/Auth';
-import jwt from 'jsonwebtoken';
+//import Home from './../Pages/Home';
+//import Results from './../Pages/Results';
+import Landing from './../Pages/Landing';
+
 
 class Wrapper extends React.Component {
   state = {
@@ -64,10 +63,11 @@ getId = () => {
 
     
     return (
-
-      <Home></Home>
-
-    
+      <div>
+        {/* <Results favs={true} /> */}
+        {/* <Home /> */}
+        <Landing />
+      </div>
     )
   }
 

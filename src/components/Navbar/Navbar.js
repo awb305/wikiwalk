@@ -8,13 +8,14 @@ import Logo from './../Logo';
 import './../../styles/css/styles.css';
 import Auth0 from './auth0';
 
-const styles = () =>({
+const styles = theme =>({
   root: {
-    flexGrow: 1
+    flexGrow: 1, 
   },
   grow: {
     flexGrow: 1
-  }
+  },
+  toolbar: theme.mixins.toolbar
 });
 
 
@@ -30,7 +31,6 @@ class Navbar extends React.Component  {
         <AppBar
           color="primary"
         >
-  
           <Toolbar>
             <Logo color="secondary" />
   
@@ -44,6 +44,7 @@ class Navbar extends React.Component  {
   
           </Toolbar>
         </AppBar>
+        <div className={classes.toolbar} />
       </div>
     );
   }

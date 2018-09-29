@@ -55,7 +55,7 @@ class Sample extends Component {
           });
         });
       }else{
-        alert("no articles found!");
+        <p>No Articles Found</p>
         // probably need to have a component to show that
       }
       })
