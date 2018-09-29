@@ -20,9 +20,9 @@ class Results extends Component {
     geoArray: [],
     idArray: [],
     content: {},
-    lon: 35.2271,
-    lat: -80.8431,
-    radius: 1000,
+    /* lon: this.props.lon,
+    lat: this.props.lat, */
+    radius: 10000,
     limit: 10
   };
 
@@ -41,9 +41,17 @@ class Results extends Component {
   };
 
   search = () => {
+    console.log(this.props.lat);
+    console.log(this.props.lon);
+    let lat = this.props.lat;
+    let lon = this.props.lon;
+    console.log("lattitue", lat);
+    console.log("longitude", lon);
+
+
     API.geoSearch(
-      this.state.lon,
-      this.state.lat,
+      lat,
+      lon,
       this.state.radius,
       this.state.limit
     )
@@ -88,6 +96,11 @@ class Results extends Component {
     return contentArray;
   };
 
+
+
+  
+  
+  
 
 render() {
 const {classes, favs } = this.props;

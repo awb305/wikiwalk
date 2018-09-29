@@ -35,10 +35,7 @@ class Home extends React.Component {
     this.setState({ query: value });
   };
 
-  sampleRedirect = () =>{
-    this.props.setPage("results");
-    return <Redirect to= '/' />;
-  }
+  
 
   render() {
     const { classes } = this.props;
@@ -55,7 +52,7 @@ class Home extends React.Component {
           style={{ height: this.state.viewport.height + 'px' }}
         >
           <Grid item className={classes.pBottom}>
-          <div onClick={this.sampleRedirect}>
+          <div onClick={this.props.setCoords}>
             <CoolBtn />
            </div> 
           </Grid>
