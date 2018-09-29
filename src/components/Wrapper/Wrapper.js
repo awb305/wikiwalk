@@ -65,10 +65,18 @@ getId = () => {
 
     
     return (
+<<<<<<< HEAD
 
       <Landing></Landing>
 
     
+=======
+      <div>
+        {/* <Results favs={true} /> */}
+        <Home />
+        {/* <Landing /> */}
+      </div>
+>>>>>>> searchpage
     )
   }
 
