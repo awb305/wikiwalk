@@ -7,6 +7,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Paper from '@material-ui/core/Paper';
 import DB from './../../../../utils/DB';
+import Collapse from '@material-ui/core/Collapse';
 
 const styles = theme => ({
   root: {
@@ -15,9 +16,11 @@ const styles = theme => ({
     paddingBottom: theme.spacing.unit * 2,
     margin: theme.spacing.unit * 4
   },
-  bodytext: {
-    fontSize: '1.5rem',
-    padding: '1rem'  
+  body: {
+    padding: '1rem'
+  },
+  text: {
+    fontSize: '1.5rem', 
   },
   breadcrumb: {
     fontSize: '1.25rem',
@@ -73,10 +76,15 @@ const Body = props => {
 
   return(
     <React.Fragment>
-      <Grid item>
-        <Typography className={props.class}>
-          {props.body}
-        </Typography>
+      <Grid item className={props.class.body}>
+        <Collapse in={props.in} collapsedHeight="100px" onClick={props.click}>
+          <Typography className={props.class.text}>
+            {props.body}
+          </Typography>
+        </Collapse>
+        <Typography onClick={props.click}>
+            {props.in ? '...Show less': 'Show more...'}
+          </Typography>
       </Grid>
     </React.Fragment>
   );
@@ -103,7 +111,13 @@ const Foot = props => {
 }
 
 class Result extends React.Component {
+  state = {
+    collapsed: false
+  }
 
+  handleCollapse = () => {
+    this.setState(state => ({collapsed: !state.collapsed}));
+  }
   render(){
     const { classes } = this.props;
     const data = {
@@ -116,6 +130,7 @@ class Result extends React.Component {
       link: this.props.url,
       favorited: true
     }
+    const collapsed = this.state.collapsed
     return (
       <div>
         <Paper className={classes.root}>
@@ -127,7 +142,7 @@ class Result extends React.Component {
                 <Header title={this.props.title} data={data} click={this.handleClick} favorited={this.props.favorited} class={classes.heartIcon}/>
               </Grid>
               <Grid item xs={10} container>
-                <Body class={classes.bodytext} body={this.props.body} />
+                <Body class={classes} in={collapsed} click={this.handleCollapse} body={this.props.body} />
               </Grid>
               <Grid item xs={10} container justify="space-between">
                 <Foot class={classes} breadcrumb={this.props.breadcrumb} url={this.props.url}/>
