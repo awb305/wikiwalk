@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Paper from '@material-ui/core/Paper';
+import DB from './../../../../utils/DB';
 
 const styles = theme => ({
   root: {
@@ -18,7 +19,7 @@ const styles = theme => ({
     fontSize: '1.5rem',
     padding: '1rem'  
   },
-  BreadCrumb: {
+  breadcrumb: {
     fontSize: '1.25rem',
     padding: '1rem 0'
   },
@@ -43,8 +44,11 @@ class Header extends React.Component {
   handleClick = event => {
     if(this.state.favorited){
       this.setState({favorited: false});
+      //delete route
     }else{
       this.setState({favorited: true});
+
+      DB.postFavorite(this.props.data, 114167404198811874512);
     }
   }
 
@@ -54,7 +58,6 @@ class Header extends React.Component {
       <React.Fragment>
         <Grid item>
           <Typography variant="display1">
-            {/* {data.title} */}
              {this.props.title}
           </Typography>
         </Grid>
@@ -103,6 +106,16 @@ class Result extends React.Component {
 
   render(){
     const { classes } = this.props;
+    const data = {
+      user_id: this.props.userId,
+      page_id: this.props.pageId,
+      title: this.props.title,
+      body: this.props.body,
+      image: this.props.image,
+      breadcrumb: this.props.breadcrumb,
+      link: this.props.url,
+      favorited: true
+    }
     return (
       <div>
         <Paper className={classes.root}>
@@ -111,7 +124,7 @@ class Result extends React.Component {
                 Image Goes Here
               </Grid> */}
               <Grid item xs={10} container justify="space-between">
-                <Header title={this.props.title} click={this.handleClick} favorited={this.props.favorited} class={classes.heartIcon}/>
+                <Header title={this.props.title} data={data} click={this.handleClick} favorited={this.props.favorited} class={classes.heartIcon}/>
               </Grid>
               <Grid item xs={10} container>
                 <Body class={classes.bodytext} body={this.props.body} />

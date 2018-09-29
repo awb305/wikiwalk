@@ -34,16 +34,7 @@ class Home extends React.Component {
     this.setState({width: window.innerWidth + 'px', height: window.innerHeight + 'px'});
   }
 
-  search = data => {
-    console.log(data);
-  }
-
-  handleClick = () =>{
-    this.search(this.state.data);
-  }
-
   handleInputChange = event => {
-    event.preventDefault;
     const { name, value } = event.target;
 
     this.setState({ query: value });
@@ -62,7 +53,9 @@ class Home extends React.Component {
           style={{height: this.state.viewport.height+'px'}}>
           <Grid item className={classes.pBottom}>
           <div onClick={this.props.setId}>
-            <CoolBtn click={this.handleClick}/>
+            <a href={"/results?lon=" + this.state.data.lon + "&lat" + this.state.data.lat} >
+              <CoolBtn />
+            </a>
             </div>
           </Grid>
           <Grid item className={classes.pBottom}>

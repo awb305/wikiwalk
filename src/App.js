@@ -5,7 +5,7 @@ import Home from './components/Pages/Home';
 import Landing from './components/Pages/Landing';
 import Results from './components/Pages/Results';
 import Theme from './Theme';
-import Sample from './components/Sample';
+//import Sample from './components/Sample';
 import Callback from './Callback';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import auth0Client from './utils/Auth';
@@ -66,12 +66,13 @@ class App extends Component {
             <Route exact path='/' component={Landing}/>
             <Route exact path='/user' component={Home}/>
             <Route exact path='/favorites' component={()=>(<Results favs={true} />)} />
+            <Route path='/results' component={()=>(<Results favs={false} />)} />
             <Route exact path='/callback' component={Callback}/>
-            <Route exact path='/sample' component={Sample} />
+            {/* <Route exact path='/sample' component={Sample} /> */}
           </div>
           </Router>
         </React.Fragment>
-        <Sample></Sample>
+        {/* <Sample></Sample> */}
       </Theme>
     );
   }
