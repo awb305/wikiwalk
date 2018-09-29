@@ -57,6 +57,7 @@ class Header extends React.Component {
 
   render(){
     const { classes } = this.props.class;
+   
     return(
       <React.Fragment>
         <Grid item>

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Navbar from './../../Navbar';
 import Result from './Result';
 import { Typography } from '@material-ui/core';
 import DB from './../../../utils/DB';
+import API from '../../../utils/API';
 
 const styles = theme => ({
   toolbar: theme.mixins.toolbar, 
@@ -15,19 +16,18 @@ const styles = theme => ({
 });
 
 
-class Results extends React.Component {
+class Results extends Component {
   state = {
     geoArray: [],
     idArray: [],
     content: {},
-    lon: -78.7004,
-    lat: 	35.8480,
-    radius: 1000,
-    limit: 10,
-    data: []
+    /* lon: this.props.lon,
+    lat: this.props.lat, */
+    radius: 10000,
+    limit: 10
   };
 
-  componentWillMount() {
+  componentDidMount() {
     if(this.props.favs){
       DB.getFavorites('114167404198811874512')
         .then(res => {
@@ -35,41 +35,107 @@ class Results extends React.Component {
           this.setState({data: res.data});
         });
     }else{
-      //API call
+      this.search();
     }
   }
 
-  render() {
-    const { classes, favs } = this.props;
-    
-    let cards = [];
+  pageIdArray = () => {
+    const idArray = [];
+    this.geoArray.forEach(element => {
+      idArray.push(element.pageid);
+    });
+    this.setState({
+      idArray: idArray
+    });
+  };
 
-    this.state.data.forEach((val, index) => cards.push(
-      <Result 
-        title={val.title} 
-        body={val.body} 
-        breadcrumb={val.breadcrum} 
-        url={val.link} 
-        pageId = {val.page_id}
-        userId = {val.user_id}
-        image = {val.image}
-        key={val.page_id} 
-        favorited={val.favorited}/>
-    ));
+  search = () => {
+    console.log(this.props.lat);
+    console.log(this.props.lon);
+    let lat = this.props.lat;
+    let lon = this.props.lon;
+    console.log("lattitue", lat);
+    console.log("longitude", lon);
 
-    return (
+
+    API.geoSearch(
+      lat,
+      lon,
+      this.state.radius,
+      this.state.limit
+    )
+      .then(res => {
+        const geoArray = res.data.query.geosearch;
+        const idArray = [];
+        geoArray.forEach(element => {
+          idArray.push(element.pageid);
+        });
+        this.setState({
+          geoArray: geoArray,
+          idArray: idArray
+        });
+        return idArray;
+      })
+      .then(idArray => {
+        if(idArray.length > 0){
+        API.idSearch(idArray).then(res => {
+          console.log('hi', res.data.query.pages);
+          const content = res.data.query.pages;
+          delete content[0];
+          this.setState({
+            content: content
+          });
+        });
+      }else{
+        alert("no articles found!");
+        // probably need to have a component to show that
+      }
+      })
+      .catch(err => console.log(err));
+  };
+
+  renderContent = () => {
+    const contentArray = [];
+    for (const key in this.state.content) {
+      if (this.state.content.hasOwnProperty(key)) {
+        const element = this.state.content[key];
+        contentArray.push(element);
+      }
+    }
+    return contentArray;
+  };
+
+
+
+ //transform "article" into database consumable  
+  
+  
+
+render() {
+const {classes, favs } = this.props;
+let contentArray = this.renderContent();
+let content = contentArray.map(article => {
+  return(
+    <Result title={article.title} body={article.extract} /* breadcrumb={article.breadcrumb} */ url={article.fullurl} key={article.pageid} /* favorited={article.favorited} *//>
+  )
+});
+return(
       <div>
-        <Navbar />
+        <Navbar logout={this.props.logout} userId={this.props.userId} />
         <div className={ classes.toolbar }>
         <Typography variant="display2" className={classes.header}>
           {favs ? "Favorites" : "Results"}
         </Typography>
-        {cards}
+        {content}
         </div>
-        
       </div>
     );
-  }
-}
+
+};
+
+};
 
 export default withStyles(styles)(Results);
+
+
+
