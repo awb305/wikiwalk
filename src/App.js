@@ -17,9 +17,9 @@ class App extends Component {
           <CssBaseline />
           <Router>
           <div>
-          <Route exact path='/' component={Wrapper}/>
-          <Route exact path='/callback' component={Callback}/>
-        </div>
+            <Route exact path='/' component={Wrapper}/>
+            <Route exact path='/callback' component={Callback}/>
+          </div>
           </Router>
         </React.Fragment>
         <Sample></Sample>

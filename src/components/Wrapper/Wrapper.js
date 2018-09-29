@@ -3,7 +3,6 @@ import React from 'react';
 //import Results from './../Pages/Results';
 import Landing from './../Pages/Landing';
 import auth0Client from '../../utils/Auth';
-import jwt from 'jsonwebtoken';
 
 
 class Wrapper extends React.Component {
@@ -66,9 +65,9 @@ getId = () => {
     
     return (
       <div>
-        {/* <Results favs={true} /> */}
-        {/* <Home /> */}
-        <Landing />
+        <Results favs={true} />
+        <Home />
+        {/* <Landing /> */}
       </div>
     )
   }
