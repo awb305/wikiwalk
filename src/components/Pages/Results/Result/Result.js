@@ -16,7 +16,9 @@ const styles = theme => ({
   },
   bodytext: {
     fontSize: '1.5rem',
-    padding: '1rem'  
+    padding: '1rem',
+    height: '20rem',
+    overflow: 'hidden' 
   },
   BreadCrumb: {
     fontSize: '1.25rem',
@@ -50,6 +52,7 @@ class Header extends React.Component {
 
   render(){
     const { classes } = this.props.class;
+   
     return(
       <React.Fragment>
         <Grid item>

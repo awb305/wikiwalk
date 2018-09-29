@@ -7,7 +7,7 @@ class Sample extends Component {
     idArray: [],
     content: {},
     lon: 35.2271,
-    lat: -90.8431,
+    lat: -80.8431,
     radius: 1000,
     limit: 10
   };
@@ -73,8 +73,15 @@ class Sample extends Component {
     return contentArray;
   };
 
+  
+
   render() {
     let contentArray = this.renderContent();
+      navigator.geolocation.getCurrentPosition(function(location) {
+      console.log(location.coords.latitude);
+      console.log(location.coords.longitude);
+      console.log(location.coords.accuracy);
+    });
     let content = contentArray.map(location => {
       console.log(location);
       return (
