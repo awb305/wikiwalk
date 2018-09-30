@@ -2,10 +2,6 @@ import React from 'react';
 //import Home from './../Pages/Home';
 //import Results from './../Pages/Results';
 import Landing from './../Pages/Landing';
-<<<<<<< HEAD
-import auth0Client from '../../utils/Auth';
-
-=======
 
 import {
   BrowserRouter as Router,
@@ -18,7 +14,6 @@ import auth0Client from '../../utils/Auth';
 import jwt from 'jsonwebtoken';
 import Sample from '../Sample';
 import Results from '../Pages/Results';
->>>>>>> 81405e5148eceb4e7ea357b73adf21c4ff687785
 
 class Wrapper extends React.Component {
   state = {
@@ -103,17 +98,6 @@ class Wrapper extends React.Component {
   }; 
 
   render() {
-<<<<<<< HEAD
-
-    
-    return (
-      <div>
-        <Results favs={true} />
-        <Home />
-        {/* <Landing /> */}
-      </div>
-    )
-=======
     console.log(this.state.lat);
     console.log(this.state.lon);
 
@@ -137,7 +121,6 @@ class Wrapper extends React.Component {
       lat={this.state.lat}
        ></Results>
     }
->>>>>>> 81405e5148eceb4e7ea357b73adf21c4ff687785
   }
 }
 
