@@ -32,8 +32,9 @@ class Navbar extends React.Component {
           color="primary"
         >
           <Toolbar>
-            <Logo color="secondary" class={classes.logo} />
-  
+            <div onClick={() => this.props.setPage('home')}>
+              <Logo color="secondary" class={classes.logo}/>
+            </div>
             <div className={ classes.grow }>
               <Typography variant="display1" color="inherit" className="m-sm-left">
                 Wiki Walking Tours

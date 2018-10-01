@@ -22,45 +22,31 @@ class Results extends Component {
     idArray: [],
     content: {},
     data: [],
-    /* lon: this.props.lon,
-    lat: this.props.lat, */
     radius: 10000,
     limit: 10
   };
 
-  componentDidMount() { 
-    if(this.props.favs){
+  getResults = favorites => {
+    if(favorites){
       DB.getFavorites(this.props.userId.split('|')[1])
         .then(res => {
-          console.log(res);
+          console.log('response', res.data)
           this.setState({data: res.data});
+          console.log(this.state.data)
         });
     }else{
       this.search();
     }
   }
 
-  // pageIdArray = () => {
-  //   const idArray = [];
-  //   this.geoArray.forEach(element => {
-  //     idArray.push(element.pageid);
-  //   });
-  //   this.setState({
-  //     idArray: idArray
-  //   });
-  // };
+  componentDidMount() { 
+    this.getResults(this.props.favs);
+  }
 
-  // renderContent = content => {
-  //   const contentArray = [];
-  //   for (const key in content) {
-  //     if (this.state.content.hasOwnProperty(key)) {
-  //       const element = content[key];
-  //       contentArray.push(element);
-  //     }
-  //   }
-  //   this.setState({data: contentArray});
-  //   console.log(this.state)
-  // };
+  componentWillReceiveProps(nextProps) {
+    this.getResults(nextProps.favs);
+    console.log(this.state);
+  }
 
   search = () => {
     let lat = this.props.lat;
@@ -81,7 +67,6 @@ class Results extends Component {
       .then(idArray => {
         if(idArray.length > 0){
         API.idSearch(idArray).then(res => {
-          //console.log('hi', res.data.query.pages);
           const data= res.data.query.pages;
 
           let content = [];
@@ -95,8 +80,6 @@ class Results extends Component {
 
             content.push(article);
           }
-
-          console.log(content);
 
           delete content[0];
           this.setState({data: content});
@@ -121,6 +104,7 @@ class Results extends Component {
         url={article.url} key={article.pageid} 
         userId={this.props.userId}
         favorite={favorite}
+        key={article.pageid}
         />
   ));
  }
