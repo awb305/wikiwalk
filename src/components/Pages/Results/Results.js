@@ -21,15 +21,16 @@ class Results extends Component {
     geoArray: [],
     idArray: [],
     content: {},
+    data: [],
     /* lon: this.props.lon,
     lat: this.props.lat, */
     radius: 10000,
     limit: 10
   };
 
-  componentDidMount() {
+  componentDidMount() { 
     if(this.props.favs){
-      DB.getFavorites('114167404198811874512')
+      DB.getFavorites(this.props.userId.split('|')[1])
         .then(res => {
           console.log(res);
           this.setState({data: res.data});
@@ -39,37 +40,38 @@ class Results extends Component {
     }
   }
 
-  pageIdArray = () => {
-    const idArray = [];
-    this.geoArray.forEach(element => {
-      idArray.push(element.pageid);
-    });
-    this.setState({
-      idArray: idArray
-    });
-  };
+  // pageIdArray = () => {
+  //   const idArray = [];
+  //   this.geoArray.forEach(element => {
+  //     idArray.push(element.pageid);
+  //   });
+  //   this.setState({
+  //     idArray: idArray
+  //   });
+  // };
+
+  // renderContent = content => {
+  //   const contentArray = [];
+  //   for (const key in content) {
+  //     if (this.state.content.hasOwnProperty(key)) {
+  //       const element = content[key];
+  //       contentArray.push(element);
+  //     }
+  //   }
+  //   this.setState({data: contentArray});
+  //   console.log(this.state)
+  // };
 
   search = () => {
-    console.log(this.props.lat);
-    console.log(this.props.lon);
     let lat = this.props.lat;
     let lon = this.props.lon;
-    console.log("lattitue", lat);
-    console.log("longitude", lon);
 
 
-    API.geoSearch(
-      lat,
-      lon,
-      this.state.radius,
-      this.state.limit
-    )
+    API.geoSearch(lat, lon, this.state.radius, this.state.limit)
       .then(res => {
         const geoArray = res.data.query.geosearch;
         const idArray = [];
-        geoArray.forEach(element => {
-          idArray.push(element.pageid);
-        });
+        geoArray.forEach(element => idArray.push(element.pageid));
         this.setState({
           geoArray: geoArray,
           idArray: idArray
@@ -79,12 +81,26 @@ class Results extends Component {
       .then(idArray => {
         if(idArray.length > 0){
         API.idSearch(idArray).then(res => {
-          console.log('hi', res.data.query.pages);
-          const content = res.data.query.pages;
+          //console.log('hi', res.data.query.pages);
+          const data= res.data.query.pages;
+
+          let content = [];
+          for(let prop in data){
+            const article = {
+              title: data[prop].title,
+              body: data[prop].extract,
+              url: data[prop].fullurl,
+              pageId: prop
+            };
+
+            content.push(article);
+          }
+
+          console.log(content);
+
           delete content[0];
-          this.setState({
-            content: content
-          });
+          this.setState({data: content});
+          
         });
       }else{
         alert("no articles found!");
@@ -94,34 +110,29 @@ class Results extends Component {
       .catch(err => console.log(err));
   };
 
-  renderContent = () => {
-    const contentArray = [];
-    for (const key in this.state.content) {
-      if (this.state.content.hasOwnProperty(key)) {
-        const element = this.state.content[key];
-        contentArray.push(element);
-      }
-    }
-    return contentArray;
-  };
-
-
 
  //transform "article" into database consumable  
+ generateContent = (data, favorite) => {
+  return data.map(article => (
+      <Result 
+        title={article.title} 
+        body={article.body} 
+        /* breadcrumb={article.breadcrumb} */ 
+        url={article.url} key={article.pageid} 
+        userId={this.props.userId}
+        favorite={favorite}
+        />
+  ));
+ }
   
-  
-
 render() {
 const {classes, favs } = this.props;
-let contentArray = this.renderContent();
-let content = contentArray.map(article => {
-  return(
-    <Result title={article.title} body={article.extract} /* breadcrumb={article.breadcrumb} */ url={article.fullurl} key={article.pageid} /* favorited={article.favorited} *//>
-  )
-});
+console.log(this.state.data)
+let content = this.generateContent(this.state.data);
+
 return(
       <div>
-        <Navbar logout={this.props.logout} userId={this.props.userId} />
+        <Navbar logout={this.props.logout} userId={this.props.userId} setPage={this.props.setPage}/>
         <div className={ classes.toolbar }>
         <Typography variant="display2" className={classes.header}>
           {favs ? "Favorites" : "Results"}

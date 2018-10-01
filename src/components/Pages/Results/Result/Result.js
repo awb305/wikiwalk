@@ -50,8 +50,12 @@ class Header extends React.Component {
       //delete route
     }else{
       this.setState({favorited: true});
-
-      DB.postFavorite(this.props.data, 114167404198811874512);
+      const userId = this.props.userId;
+      console.log(this.props);
+      DB.postFavorite(this.props.data, userId)
+        .then(res => {
+          console.log(res);
+        });
     }
   }
 
@@ -122,7 +126,7 @@ class Result extends React.Component {
   render(){
     const { classes } = this.props;
     const data = {
-      user_id: this.props.userId,
+      user_id: this.props.userId.split('|')[1],
       page_id: this.props.pageId,
       title: this.props.title,
       body: this.props.body,

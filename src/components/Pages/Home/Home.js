@@ -40,9 +40,10 @@ class Home extends React.Component {
   render() {
     const { classes } = this.props;
     console.log(this.props.userId);
+    console.log('home props: ', this.props)
     return (
       <div>
-        <Navbar logout={this.props.logout} userId={this.props.userId}/>
+        <Navbar logout={this.props.logout} userId={this.props.userId} setPage={this.props.setPage}/>
         <Grid
           container
           direction="column"

@@ -121,7 +121,16 @@ class Wrapper extends React.Component {
       setCoords={this.setCoords}
       lon={this.state.lon}
       lat={this.state.lat}
+      setPage={this.setPage}
        ></Results>
+    }else if(this.state.page === 'favorites'){
+      return (
+        <Results logout={this.logout}
+          userId={this.state.userId}
+          favs={true}
+          setPage={this.setPage}
+          />
+      )
     }
   }
 }

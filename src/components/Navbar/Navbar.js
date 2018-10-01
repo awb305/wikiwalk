@@ -39,7 +39,7 @@ class Navbar extends React.Component {
                 Wiki Walking Tours
               </Typography>
             </div>
-            <Auth0 logout={this.props.logout} userId={this.props.userId}/>
+            <Auth0 logout={this.props.logout} userId={this.props.userId} setPage={this.props.setPage}/>
           </Toolbar>
         </AppBar>
         <div className={classes.toolbar} />

@@ -21,6 +21,7 @@ export default {
   postFavorite: function (data) {
     let url = 'http://wikiwalking.azurewebsites.net/api/wikiResults';
     return new Promise(function(resolve, reject) {
+      console.log('data passed', data)
       return axios.post(url, data)
         .then(function (res) {
           if(res.status === 201) {

@@ -33,7 +33,7 @@ class Auth0 extends Component {
         {
           auth0Client.isAuthenticated() &&
           <div>
-            <Popover>
+            <Popover userId={this.props.userId} setPage={this.props.setPage}>
               <ListItem button onClick={this.LoginHandler}>
                 <ListItemText primary="Sign Out" />
               </ListItem>
