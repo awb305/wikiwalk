@@ -16,26 +16,26 @@ const styles = theme =>({
   grow: {
     flexGrow: 1
   },
-  toolbar: theme.mixins.toolbar
+  toolbar: theme.mixins.toolbar,
+  logo: {
+    fontSize: '40px'
+  }
 });
 
 class Navbar extends React.Component {
   render() {
     const { classes } = this.props;
-    console.log(this.props.userId);
+    //console.log(this.props.setId);
     return (
       <div className={ classes.root }>
         <AppBar
           color="primary"
         >
           <Toolbar>
-            <Logo color="secondary" />
-            <div className={classes.grow}>
-              <Typography
-                variant="display1"
-                color="inherit"
-                className="m-sm-left"
-              >
+            <Logo color="secondary" class={classes.logo} />
+  
+            <div className={ classes.grow }>
+              <Typography variant="display1" color="inherit" className="m-sm-left">
                 Wiki Walking Tours
               </Typography>
             </div>

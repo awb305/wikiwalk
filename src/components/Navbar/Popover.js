@@ -11,16 +11,17 @@ import Divider from '@material-ui/core/Divider';
 import PersonIcon from '@material-ui/icons/PersonOutlined';
 import FavoriteIcon from '@material-ui/icons/FavoriteOutlined';
 import UserIcon from './UserIcon';
-import Auth0 from './auth0';
-import auth0Client from '../../utils/Auth'
-const jwt = require('jsonwebtoken');
 
-const getUser = () => {
-  let token = auth0Client.getIdToken();
-  let decodedObj = jwt.decode(token)
-  let user = decodedObj.nickname;
-  return user;
-};
+// import Auth0 from './auth0';
+// import auth0Client from '../../utils/Auth'
+// const jwt = require('jsonwebtoken');
+
+// const getUser = () => {
+//   let token = auth0Client.getIdToken();
+//   let decodedObj = jwt.decode(token)
+//   let user = decodedObj.nickname;
+//   return user;
+// };
 
 
 const styles = theme => ({
@@ -95,7 +96,7 @@ class UserMenu extends React.Component {
                 <ListItemText primary="Saved" />
               </ListItem>
               <Divider />
-              <Auth0 />
+                {this.props.children}
             </List>
           </div>
         </Popover>

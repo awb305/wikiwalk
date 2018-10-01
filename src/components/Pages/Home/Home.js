@@ -30,7 +30,6 @@ class Home extends React.Component {
   }
 
   handleInputChange = event => {
-    event.preventDefault;
     const { name, value } = event.target;
 
     this.setState({ query: value });

@@ -1,7 +1,7 @@
 import React from 'react';
 //import Home from './../Pages/Home';
 //import Results from './../Pages/Results';
-import Landing from './../Pages/Landing';
+
 
 import {
   BrowserRouter as Router,
@@ -12,6 +12,7 @@ import Callback from '../../Callback';
 import Home from '../Pages/Home';
 import auth0Client from '../../utils/Auth';
 import jwt from 'jsonwebtoken';
+import Landing from './../Pages/Landing';
 import Sample from '../Sample';
 import Results from '../Pages/Results';
 
@@ -98,6 +99,7 @@ class Wrapper extends React.Component {
   }; 
 
   render() {
+
     console.log(this.state.lat);
     console.log(this.state.lon);
 

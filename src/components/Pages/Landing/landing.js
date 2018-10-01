@@ -1,10 +1,10 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Navbar from './../../Navbar';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Logo from './../../Logo';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   toolbar: theme.mixins.toolbar, 
@@ -20,11 +20,12 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 4
   },
   bigLogo: {
-    fontSize: '125px'
+    ...theme.mixins.gutters(),
+    margin: theme.spacing.unit * 2,
+    fontSize: '150px',
+    
   }, 
   bodytext: {
-    ...theme.mixins.gutters(),
-    marginBottom: theme.spacing.unit * 4,
     fontSize: '12px'
   }
 });
@@ -34,8 +35,8 @@ const Landing = props => {
   return(
     <div>
       <Navbar/>
-      <Grid container justify="center" alignItems="center" className={classes.jumbo}>
-        <Grid item xs={6}>
+      <Grid container direction="row" alignItems="center" justify="center" className={classes.jumbo}>
+        <Grid item>
             <Typography variant="display3">
               Wiki Walking Tours
             </Typography>
@@ -43,7 +44,7 @@ const Landing = props => {
               Walk n' Learn
             </Typography>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item>
           <Logo color="primary" class={classes.bigLogo}/>
         </Grid>
       </Grid>
@@ -53,12 +54,17 @@ const Landing = props => {
             About us
           </Typography>
           <Typography variant="body1" align="center" className={classes.bodytext}>
-            Have you ever been in a new city wondering what is around? You're traveling to amazing places with a deep history that's right in front of you but you have no way of knowing it? Or maybe you find yourself between flights with a full day layover, finding yourself with an impromtu mini vacation but you don't know where to go. We built an app just for that!
+            Have you ever been in a new city wondering what's around? You're traveling to amazing places with a deep history that's right in front of you but you have no way of knowing it? Or maybe you find yourself between flights with a full day layover, finding yourself with an impromtu mini vacation but nowhere to go. We built an app just for that!
              <br /><br />
              With Wiki Walking Tours you can easily find Wikipedia articles of cool places near you. Alternatively you can plan your tour by entering your travel location and saving the places you want to see.
              <br /><br />
              Life happens, and we don't want you to miss a moment of it!
           </Typography>
+        </Grid>
+      </Grid>
+      <Grid container justify="center" alignItems="center">
+        <Grid item>
+        <Button color="secondary" variant="contained" className={classes.margins}>Click here to Login or Signup!</Button>
         </Grid>
       </Grid>
     </div>
