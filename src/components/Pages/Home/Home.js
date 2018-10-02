@@ -9,9 +9,13 @@ import API from '../../../utils/API';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { compose } from 'recompose';
+import jwt from 'jsonwebtoken';
+import auth0Client from '../../../utils/Auth';
 
 import { connect } from 'react-redux';
 import { setCoords } from '../../../actions/setCoords-action';
+
+import { setUserId } from '../../../actions/setUserId-action';
 
 const styles = theme => ({
   pBottom: {
@@ -34,6 +38,37 @@ class Home extends React.Component {
       height: window.innerHeight + 'px'
     });
   }
+
+  componentDidMount() {
+    if (this.props.userId === 'loggedOut') {
+      console.log(this.props.userId);
+      this.setId();
+    }
+  };
+
+  getId = () => {
+    if(this.props.userId === 'loggedOut'){
+      return new Promise((resolve, reject) => {
+        let token = auth0Client.getIdToken();
+        console.log(token);
+        let decodedObj = jwt.decode(token);
+        console.log(decodedObj);
+        if (decodedObj !== null) {
+          resolve(decodedObj);
+        } else {
+          reject(console.error());
+        }
+      });
+    }
+  };
+
+  setId = async () => {
+    const loginId = await this.getId();
+    console.log(loginId);
+    this.props.onSetUserId(loginId.sub);
+
+  };
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -85,14 +120,14 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  lat: state.lat,
-  lon: state.lon
+  userId: state.userId
 });
 
 // makes the 'onSetUserId' to the prop that corresponds to the setUserId which was imported from actions
 
 const mapActionsToProps = {
-  onSetCoords: setCoords
+  onSetCoords: setCoords,
+  onSetUserId: setUserId
 };
 
 

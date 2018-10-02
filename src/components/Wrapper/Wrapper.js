@@ -103,8 +103,10 @@ class Wrapper extends React.Component {
     console.log(this.state.lat);
     console.log(this.state.lon);
 
+    return <Landing></Landing>
+
     // currently doing conditional redendring andrew looking into redux
-    if(this.state.page === 'home'){
+    /* if(this.state.page === 'home'){
       return <Home logout = {
         this.logout
       } 
@@ -122,7 +124,7 @@ class Wrapper extends React.Component {
       lon={this.state.lon}
       lat={this.state.lat}
        ></Results>
-    }
+    } */
   }
 }
 

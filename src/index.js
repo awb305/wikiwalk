@@ -34,7 +34,7 @@ const allReducers = combineReducers({
 const store = createStore(
   allReducers,
   {
-    userId: 'dumbo',
+    userId: 'loggedOut',
     coords: {
       lat: 35.2271,
       lon: -80.8431

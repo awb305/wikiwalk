@@ -17,7 +17,8 @@ class App extends Component {
           <CssBaseline />
           <Router>
             <div>
-              <Route exact path="/" component={Wrapper} />
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/home" component={Home} />
               <Route exact path="/callback" component={Callback} />
             </div>
           </Router>

@@ -9,8 +9,6 @@ export function setUserId(newId) {
       userId: newId
     }
   }
-
-
 }
 
 
