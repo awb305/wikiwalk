@@ -70,6 +70,7 @@ class Results extends Component {
         const idArray = [];
         geoArray.forEach(element => {
           idArray.push(element.pageid);
+          console.log(geoArray);
         });
         this.setState({
           geoArray: geoArray,
