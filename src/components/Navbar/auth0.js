@@ -11,14 +11,14 @@ import { setUserId } from '../../actions/setUserId-action';
 
 
 class Auth0 extends Component {
-  constructor(props) {
+  /* constructor(props) {
     super(props);
     this.onSetUserId = this.onSetUserId.bind(this);
   }
 
   onSetUserId(newId) {
     this.props.onSetUserId(newId);
-  }
+  } */
 
   /* constructor(props) {
     super(props);
@@ -41,7 +41,7 @@ class Auth0 extends Component {
     if(this.props.userId === 'loggedOut'){
       auth0Client.signIn();
     }else{
-      this.onSetUserId('stupidhead');
+      this.props.onSetUserId('loggedOut')
       this.forceUpdate;
     }
   };
@@ -58,7 +58,8 @@ class Auth0 extends Component {
           auth0Client.isAuthenticated() &&
           <div>
             <Popover>
-              <ListItem button onClick={this.onSetUserId('stupidHead')}>
+               {/* <ListItem button onClick={this.onSetUserId('stupidHead')}> */}
+               <ListItem button onClick={this.LoginHandler()}>
                 <ListItemText primary="Sign Out" />
               </ListItem>
             </Popover>
@@ -72,6 +73,8 @@ class Auth0 extends Component {
 const mapStateToProps = state => ({
   userId: state.userId
 });
+
+// makes the 'onSetUserId' to the prop that corresponds to the setUserId which was imported from actions
 
 const mapActionsToProps = {
   onSetUserId: setUserId
