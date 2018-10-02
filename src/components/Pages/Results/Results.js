@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Navbar from './../../Navbar';
 import Result from './Result';
 import { Typography } from '@material-ui/core';
+import DB from './../../../utils/DB';
 import API from '../../../utils/API';
 import Map from './GoogleMaps/Maps';
 
@@ -28,7 +29,15 @@ class Results extends Component {
   };
 
   componentDidMount() {
-    this.search();
+    if(this.props.favs){
+      DB.getFavorites('114167404198811874512')
+        .then(res => {
+          console.log(res);
+          this.setState({data: res.data});
+        });
+    }else{
+      this.search();
+    }
   }
 
   pageIdArray = () => {

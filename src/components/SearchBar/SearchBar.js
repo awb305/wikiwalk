@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
+
 
 const styles = theme => ({
   search: {
@@ -12,25 +13,48 @@ const styles = theme => ({
     color: '#fff'
   }, 
   resize:{
-    fontSize: 18
+    fontSize: 18,
+    
+  },
+  iconBtn: {
+    backgroundColor: theme.palette.secondary.main,
+    color: '#fff',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '50px',
+    borderRadius: '0px 5px 5px 0px',
+    border: 'solid 1px #BDBDBD',
+    borderLeft: 'none', 
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+      
+    }
+  },
+  searchBar: {
+    display: 'flex'
+  },
+  outline: {
+    borderRadius: '5px 0px 0px 5px'
   }
 });
 
 const SearchBar = props => {
   const { classes } = props;
+
   return (
-    <Grid container alignItems="center">
-      <Grid item>
+
+      <div className={classes.searchBar}>
         <TextField  
           id="location"
           label="Search a location"
           variant="outlined"
-          fullWidth={true}
           value={props.query}
           onChange={props.onChange}
           InputProps={{
             classes: {
-              input: classes.resize
+              input: classes.resize,
+              notchedOutline: classes.outline
             }
           }}
           InputLabelProps={{
@@ -39,15 +63,10 @@ const SearchBar = props => {
             }
           }}
         />
-        </Grid>
-        <Grid item>
-          <IconButton className={classes.search}>
-            <SearchIcon />
-          </IconButton>
-          
-        </Grid>
-      
-    </Grid>
+        <div className={classes.iconBtn}>
+          <SearchIcon />
+        </div>
+      </div>
   );
 };
 
