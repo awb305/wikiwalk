@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button'
 import auth0Client from '../../utils/Auth';
 import Popover from './Popover';
+
+const styles = theme => ({
+  loginBtn: {
+    transition: theme.transitions.create(
+      ['background-color', 'color'],
+      {duration: theme.transitions.duration.standard}
+    ),
+    '&:hover': {
+      backgroundColor: theme.palette.primary.light, 
+      color: theme.palette.primary.main
+    }
+  }
+});
 
 class Auth0 extends Component {
   signOut = props => {
@@ -24,11 +38,12 @@ class Auth0 extends Component {
 
   render() {
     console.log(this.props.userId);
+    const { classes } = this.props
     return (
       <div>
         {
           !auth0Client.isAuthenticated() &&
-          <Button color="secondary" variant="contained" onClick={this.LoginHandler}>Sign In</Button>
+          <Button color="secondary" className={classes.loginBtn} variant="contained" onClick={this.LoginHandler}>Sign In</Button>
         }
         {
           auth0Client.isAuthenticated() &&
@@ -45,4 +60,4 @@ class Auth0 extends Component {
   }
 }
 
-export default withRouter(Auth0);
+export default withStyles(styles) (withRouter(Auth0));

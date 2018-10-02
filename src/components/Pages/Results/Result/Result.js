@@ -20,7 +20,7 @@ const styles = theme => ({
     padding: '1rem'
   },
   text: {
-    fontSize: '1.5rem', 
+    fontSize: '1.5rem',
   },
   breadcrumb: {
     fontSize: '1.25rem',
@@ -30,8 +30,12 @@ const styles = theme => ({
     textDecoration: 'none'
   },
   heartIcon: {
-    "&:hover": {
-      color: 'secondary'
+    transition: theme.transitions.create(
+      ['color'],
+      {duration: theme.transitions.duration.standard}
+    ),
+    '&:hover': {
+      color: theme.palette.secondary.main,
     }
   }
 
@@ -50,9 +54,8 @@ class Header extends React.Component {
       //delete route
     }else{
       this.setState({favorited: true});
-      const userId = this.props.userId;
       console.log(this.props);
-      DB.postFavorite(this.props.data, userId)
+      DB.postFavorite(this.props.data)
         .then(res => {
           console.log(res);
         });
@@ -60,7 +63,7 @@ class Header extends React.Component {
   }
 
   render(){
-    const { classes } = this.props.class;
+    
    
     return(
       <React.Fragment>
@@ -70,7 +73,9 @@ class Header extends React.Component {
           </Typography>
         </Grid>
         <Grid item onClick={this.handleClick}>
-          {this.state.favorited ? <FavoriteIcon color="secondary" />: <FavoriteBorderIcon className={classes} color="primary" />}
+          {this.state.favorited ? 
+            <FavoriteIcon className={this.props.class} color="secondary" /> : 
+            <FavoriteBorderIcon className={this.props.class} color="primary" />}
         </Grid>
       </React.Fragment>
     );

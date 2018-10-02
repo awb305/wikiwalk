@@ -45,7 +45,7 @@ class Results extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.getResults(nextProps.favs);
-    console.log(this.state);
+    this.forceUpdate();
   }
 
   search = () => {
