@@ -6,7 +6,31 @@ import Button from '@material-ui/core/Button'
 import auth0Client from '../../utils/Auth';
 import Popover from './Popover';
 
+import { connect } from 'react-redux';
+import { setUserId } from '../../actions/setUserId-action';
+
+
 class Auth0 extends Component {
+  constructor(props) {
+    super(props);
+    this.onSetUserId = this.onSetUserId.bind(this);
+  }
+
+  onSetUserId(newId) {
+    this.props.onSetUserId(newId);
+  }
+
+  /* constructor(props) {
+    super(props);
+    this.onSetUserId = this.onSetUserId.bind(this); 
+    this.LoginHandler = this.LoginHandler.bind(this);
+  }
+
+  onSetUserId(newId) {
+    this.props.OnSetUserId(newId);
+  }
+ */
+
   signOut = props => {
     auth0Client.signOut();
     props.history.replace('/');
@@ -17,7 +41,7 @@ class Auth0 extends Component {
     if(this.props.userId === 'loggedOut'){
       auth0Client.signIn();
     }else{
-      this.props.logout();
+      this.onSetUserId('stupidhead');
       this.forceUpdate;
     }
   };
@@ -34,7 +58,7 @@ class Auth0 extends Component {
           auth0Client.isAuthenticated() &&
           <div>
             <Popover>
-              <ListItem button onClick={this.LoginHandler}>
+              <ListItem button onClick={this.onSetUserId('stupidHead')}>
                 <ListItemText primary="Sign Out" />
               </ListItem>
             </Popover>
@@ -45,4 +69,14 @@ class Auth0 extends Component {
   }
 }
 
-export default withRouter(Auth0);
+const mapStateToProps = state => ({
+  userId: state.userId
+});
+
+const mapActionsToProps = {
+  onSetUserId: setUserId
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(Auth0);
+
+//withRouter(Auth0)

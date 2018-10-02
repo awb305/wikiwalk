@@ -7,18 +7,20 @@ import Typography from '@material-ui/core/Typography';
 import SearchBar from '../../SearchBar';
 import API from '../../../utils/API';
 import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
   pBottom: {
     paddingBottom: '5rem'
   }
-  
 });
 
 class Home extends React.Component {
   state = {
-    viewport: { width: window.innerWidth, height: window.innerHeight },
+    viewport: {
+      width: window.innerWidth,
+      height: window.innerHeight
+    },
     query: 'Location'
   };
 
@@ -32,43 +34,45 @@ class Home extends React.Component {
   handleInputChange = event => {
     const { name, value } = event.target;
 
-    this.setState({ query: value });
+    this.setState({
+      query: value
+    });
   };
-
-  
 
   render() {
     const { classes } = this.props;
     console.log(this.props.userId);
     return (
       <div>
-        <Navbar logout={this.props.logout} userId={this.props.userId}/>
+        <Navbar logout={this.props.logout} />{' '}
         <Grid
           container
           direction="column"
           justify="center"
           alignItems="center"
           alignContent="center"
-          style={{ height: this.state.viewport.height + 'px' }}
+          style={{
+            height: this.state.viewport.height + 'px'
+          }}
         >
           <Grid item className={classes.pBottom}>
-          <div onClick={this.props.setCoords}>
-            <CoolBtn />
-           </div> 
-          </Grid>
+            <div onClick={this.props.setCoords}>
+              <CoolBtn />
+            </div>{' '}
+          </Grid>{' '}
           <Grid item className={classes.pBottom}>
             <Typography variant="display1" align="center">
               Or <br /> Find cool things somewhere else
-            </Typography>
-          </Grid>
+            </Typography>{' '}
+          </Grid>{' '}
           <Grid item>
             <SearchBar
               value={this.state.query}
               onChange={this.handleInputChange}
-            />
-            <p>{this.state.query}</p>
-          </Grid>
-        </Grid>
+            />{' '}
+            <p> {this.state.query} </p>{' '}
+          </Grid>{' '}
+        </Grid>{' '}
       </div>
     );
   }
