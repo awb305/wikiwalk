@@ -109,7 +109,7 @@ class Wrapper extends React.Component {
         this.logout
       } 
       userId = {this.state.userId}
-      setCoords = {this.setCoords}
+      //setCoords = {this.setCoords}
       setPage={this.setPage}
       /> ;
     }else if(this.state.page === 'results'){

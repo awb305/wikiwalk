@@ -7,6 +7,7 @@ import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import setUserIdReducer from './reducers/setUserId-reducer';
+import setCoordsReducer from './reducers/setCoords-reducer';
 
 /* import productsReducer from './reducers/products-reducer';
 import userReducer from './reducers/user-reducer';
@@ -26,13 +27,18 @@ const reducer = () => {
 }); */
 
 const allReducers = combineReducers({
-  userId: setUserIdReducer
+  userId: setUserIdReducer,
+  coords: setCoordsReducer
 });
 
 const store = createStore(
   allReducers,
   {
-    userId: 'dumbo'
+    userId: 'dumbo',
+    coords: {
+      lat: 35.2271,
+      lon: -80.8431
+    }
   },
   window.devToolsExtension && window.devToolsExtension()
 );
