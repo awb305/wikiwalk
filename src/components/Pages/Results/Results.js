@@ -4,6 +4,7 @@ import Navbar from './../../Navbar';
 import Result from './Result';
 import { Typography } from '@material-ui/core';
 import API from '../../../utils/API';
+import Map from './GoogleMaps/Maps';
 
 const styles = theme => ({
   toolbar: theme.mixins.toolbar, 
@@ -63,7 +64,7 @@ class Results extends Component {
         });
         this.setState({
           geoArray: geoArray,
-          idArray: idArray
+          idArray: idArray,
         });
         return idArray;
       })
@@ -97,7 +98,6 @@ class Results extends Component {
   };
 
 
-
  //transform "article" into database consumable  
   
   
@@ -114,6 +114,7 @@ return(
       <div>
         <Navbar logout={this.props.logout} userId={this.props.userId} />
         <div className={ classes.toolbar }>
+        <Map />
         <Typography variant="display2" className={classes.header}>
           {favs ? "Favorites" : "Results"}
         </Typography>
