@@ -115,7 +115,7 @@ class Header extends React.Component {
 }
 
 const Body = props => {
-  const shortBlurb = props.body.match(/^(.*?)[.?!]\s/)[0];
+  //const shortBlurb = props.body.match(/^(.*?)[.?!]\s/)[0];
   const shortBlurb2 = (function () {
     const bodyLength = props.body.length;
     if(bodyLength > 124){
