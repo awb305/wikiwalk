@@ -14,8 +14,18 @@ const theme = createMuiTheme({
       light: '#e2edf3',
       dark: '#458fb4',
       contrastText: '#fff'
+    },
+    
+    background: {
+      default: '#e2edf3'
     }
-  }
+  },
+
+  typography: {
+    fontFamily: ['lato'].join(',')
+  },
+
+  
 });
 
 const Theme = props => (

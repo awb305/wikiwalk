@@ -5,14 +5,29 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Logo from './../../Logo';
 import Button from '@material-ui/core/Button';
+import Skyline from './skyline.png';
+import SkylineSVG from './skyline.svg';
+
 
 const styles = theme => ({
+  root: {
+    backgroundImage: `url(${SkylineSVG})`,
+    backgroundRepeat: 'repeat-x',
+    backgroundAttatchement: 'fixed',
+    backgroundPosition: '0px 65px',
+  },
+  container: {
+    [theme.breakpoints.up('lg')]: {
+      margin: 'auto',
+      width: '75%'
+    }
+  },
   toolbar: theme.mixins.toolbar, 
   jumbo: {
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 7,
     paddingBottom: theme.spacing.unit * 7,
-    backgroundColor: theme.palette.primary.light
+    backgroundColor: 'rgba(252,252,252,0.7)',
   },
   margins: {
     ...theme.mixins.gutters(),
@@ -27,28 +42,36 @@ const styles = theme => ({
   }, 
   bodytext: {
     fontSize: '12px'
+  },
+  aboutus: {
+    backgroundColor: theme.palette.background.paper
   }
+
 });
 
 const Landing = props => {
   const { classes } = props;
   return(
-    <div>
-      <Navbar/>
-      <Grid container direction="row" alignItems="center" justify="center" className={classes.jumbo}>
-        <Grid item>
-            <Typography variant="display3">
-              Wiki Walking Tours
-            </Typography>
-            <Typography variant="display1">
-              Walk n' Learn
-            </Typography>
-        </Grid>
-        <Grid item>
-          <Logo color="primary" class={classes.bigLogo}/>
-        </Grid>
-      </Grid>
-      <Grid container justify="center" alignItems="center">
+    <div className={classes.root}>
+      <Navbar logout={props.logout} userId={props.userId} username={props.username} setPage={props.setPage}/>
+      
+      <div className={classes.container}>
+        <div>
+          <Grid container direction="row" alignItems="center" justify="center" className={classes.jumbo}>
+            <Grid item>
+                <Typography variant="display3">
+                  Wiki Walking Tours
+                </Typography>
+                <Typography variant="display1">
+                  Walk n' Learn
+                </Typography>
+            </Grid>
+            <Grid item>
+              <Logo color="primary" class={classes.bigLogo}/>
+            </Grid>
+          </Grid>
+        </div>
+      <Grid container direction="column" justify="center" alignItems="center" className={classes.aboutus}>
         <Grid item xs={8}>
           <Typography variant="display2" align="center" className={classes.margins}>
             About us
@@ -61,12 +84,11 @@ const Landing = props => {
              Life happens, and we don't want you to miss a moment of it!
           </Typography>
         </Grid>
-      </Grid>
-      <Grid container justify="center" alignItems="center">
         <Grid item>
-        <Button color="secondary" variant="contained" className={classes.margins}>Click here to Login or Signup!</Button>
+          <Button color="secondary" variant="contained" className={classes.margins}>Click here to Login or Signup!</Button>
         </Grid>
       </Grid>
+      </div>
     </div>
   );
 }

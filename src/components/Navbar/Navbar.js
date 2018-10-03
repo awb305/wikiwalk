@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 import Logo from '../Logo';
-import UserMenu from './Popover';
 import './../../styles/css/styles.css';
 import Auth0 from './auth0';
 
@@ -18,7 +17,15 @@ const styles = theme =>({
   },
   toolbar: theme.mixins.toolbar,
   logo: {
-    fontSize: '40px'
+    fontSize: '40px',
+    transition: theme.transitions.create(
+      ['color'],
+      {duration: theme.transitions.duration.standard}
+    ),
+    '&:hover': {
+      color: theme.palette.primary.light,
+      cursor: 'pointer'
+    }
   }
 });
 
@@ -32,14 +39,16 @@ class Navbar extends React.Component {
           color="primary"
         >
           <Toolbar>
-            <Logo color="secondary" class={classes.logo} />
-  
+            <div onClick={() => this.props.setPage('landing')}>
+
+              <Logo color="secondary" class={classes.logo}/>
+            </div>
             <div className={ classes.grow }>
               <Typography variant="display1" color="inherit" className="m-sm-left">
                 Wiki Walking Tours
               </Typography>
             </div>
-            <Auth0 logout={this.props.logout} userId={this.props.userId}/>
+            <Auth0 logout={this.props.logout} username={this.props.username} userId={this.props.userId} setPage={this.props.setPage}/>
           </Toolbar>
         </AppBar>
         <div className={classes.toolbar} />
