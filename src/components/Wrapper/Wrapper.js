@@ -19,6 +19,7 @@ import Results from '../Pages/Results';
 class Wrapper extends React.Component {
   state = {
     userId: 'loggedOut',
+    username: null,
     page: "landing",
     lon: -80.8431,
     lat: 35.2271,
@@ -28,7 +29,7 @@ class Wrapper extends React.Component {
   getId = () => {
     return new Promise((resolve, reject) => {
       let token = auth0Client.getIdToken();
-      console.log(token);
+      //console.log(token);
       let decodedObj = jwt.decode(token);
       console.log(decodedObj);
       if (decodedObj !== null) {
@@ -41,9 +42,10 @@ class Wrapper extends React.Component {
 
   setId = async () => {
     const loginId = await this.getId();
-    console.log(loginId);
+    //console.log(loginId.name);
     this.setState({
-      userId: loginId.sub
+      userId: loginId.sub,
+      username: loginId.name
     });
   };
 
@@ -97,6 +99,7 @@ class Wrapper extends React.Component {
 
     console.log(this.state.lat);
     console.log(this.state.lon);
+    console.log(this.state.username);
 
     // currently doing conditional redendring andrew looking into redux
     if (this.state.page === 'landing') {
@@ -106,6 +109,7 @@ class Wrapper extends React.Component {
             this.logout
           } 
           userId={this.state.userId}
+          username={this.state.username}
           setPage={this.setPage} />
       );
     }
@@ -114,6 +118,7 @@ class Wrapper extends React.Component {
         this.logout
       } 
       userId = {this.state.userId}
+      username={this.state.username}
       setCoords = {this.setCoords}
       setPage={this.setPage}
       /> ;
@@ -123,6 +128,7 @@ class Wrapper extends React.Component {
         this.logout
       }
       userId={this.state.userId}
+      username={this.state.username}
       setCoords={this.setCoords}
       lon={this.state.lon}
       lat={this.state.lat}
@@ -133,6 +139,7 @@ class Wrapper extends React.Component {
       return (
         <Results logout={this.logout}
           userId={this.state.userId}
+          username={this.state.username}
           favs={true}
           setPage={this.setPage}
           />

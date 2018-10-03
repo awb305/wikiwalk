@@ -44,7 +44,8 @@ const Landing = props => {
   const { classes } = props;
   return(
     <div>
-      <Navbar logout={props.logout} userId={props.userId} setPage={props.setPage}/>
+      <Navbar logout={props.logout} userId={props.userId} username={props.username} setPage={props.setPage}/>
+      {console.log(props)}
       <div className={classes.container}>
         <div className={classes.skyline}>
           <Grid container direction="row" alignItems="center" justify="center" className={classes.jumbo}>

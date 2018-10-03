@@ -77,7 +77,8 @@ class UserMenu extends React.Component {
                 <ListItemIcon>
                   <PersonIcon />
                 </ListItemIcon>
-                <ListItemText primary="Logged in as [User]"/>
+                <ListItemText primary={`Logged in as ${this.props.username}`}/>
+                {console.log(this.props)}
               </ListItem>
               <ListItem>
                 <ListItemText primary={`User ID: ${this.props.userId.split('|')[1]}`} />
@@ -99,7 +100,7 @@ class UserMenu extends React.Component {
                 <ListItemIcon>
                   <DeveloperBoardIcon />
                 </ListItemIcon>
-                <ListItemText primary="API" />
+                <ListItemText primary="API" onClick={() => {window.location.href='http://wikiwalking.azurewebsites.net/'}} />
               </ListItem>
               <Divider />
                 {this.props.children}

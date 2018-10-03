@@ -124,7 +124,7 @@ let content = this.generateContent(this.state.data);
 
 return(
       <div>
-        <Navbar logout={this.props.logout} userId={this.props.userId} setPage={this.props.setPage}/>
+        <Navbar logout={this.props.logout} userId={this.props.userId} username={this.props.username} setPage={this.props.setPage}/>
         <div className={classes.toolbar}>
           <div className={ classes.container }>
           <Typography variant="display2" className={classes.header}>
