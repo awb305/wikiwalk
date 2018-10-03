@@ -49,7 +49,6 @@ class Navbar extends React.Component {
               </Typography>
             </div>
             <Auth0 logout={this.props.logout} username={this.props.username} userId={this.props.userId} setPage={this.props.setPage}/>
-            {console.log(this.props)}
           </Toolbar>
         </AppBar>
         <div className={classes.toolbar} />

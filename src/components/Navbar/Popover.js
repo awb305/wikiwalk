@@ -20,6 +20,11 @@ const styles = theme => ({
     width: '100%',
     maxWidth: '260px',
     backgroundColor: theme.palette.background.paper
+  },
+  userbtn: {
+    '&:hover':{
+      color: theme.palette.primary.light
+    }
   }
 });
 
@@ -52,8 +57,9 @@ class UserMenu extends React.Component {
           aria-haspopup="true"
           variation="contained"
           onClick={this.handleClick}
+          className={classes.userbtn}
         >
-          <UserIcon />
+          <UserIcon className={classes.userbtn} />
         </IconButton>
 
         <Popover
@@ -78,10 +84,9 @@ class UserMenu extends React.Component {
                   <PersonIcon />
                 </ListItemIcon>
                 <ListItemText primary={`Logged in as ${this.props.username}`}/>
-                {console.log(this.props)}
               </ListItem>
               <ListItem>
-                <ListItemText primary={`User ID: ${this.props.userId.split('|')[1]}`} />
+                <ListItemText primary={`User ID: ${this.props.userId}`} />
               </ListItem>
               <Divider />
               <ListItem button onClick={() => this.props.setPage('favorites')}>

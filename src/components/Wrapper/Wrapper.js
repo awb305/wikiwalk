@@ -31,7 +31,7 @@ class Wrapper extends React.Component {
       let token = auth0Client.getIdToken();
       //console.log(token);
       let decodedObj = jwt.decode(token);
-      console.log(decodedObj);
+      //console.log(decodedObj);
       if (decodedObj !== null) {
         resolve(decodedObj);
       } else {
@@ -44,7 +44,7 @@ class Wrapper extends React.Component {
     const loginId = await this.getId();
     //console.log(loginId.name);
     this.setState({
-      userId: loginId.sub,
+      userId: loginId.sub.split('|')[1],
       username: loginId.name
     });
   };
@@ -52,9 +52,9 @@ class Wrapper extends React.Component {
   retrieveCoords = () => {
     return new Promise( (resolve, reject) => {
       navigator.geolocation.getCurrentPosition((location) => {
-        console.log(location.coords.latitude);
-        console.log(location.coords.longitude);
-        console.log(location.coords.accuracy);
+        //console.log(location.coords.latitude);
+        //console.log(location.coords.longitude);
+        //console.log(location.coords.accuracy);
         if (location.coords !== null) {
           resolve(location);
         } else {
@@ -66,7 +66,7 @@ class Wrapper extends React.Component {
 
   setCoords = async () => {
     const location = await this.retrieveCoords();
-    console.log(location);
+    //console.log(location);
     this.setState({
       lat: location.coords.latitude,
       lon: location.coords.longitude,
@@ -97,9 +97,9 @@ class Wrapper extends React.Component {
 
   render() {
 
-    console.log(this.state.lat);
-    console.log(this.state.lon);
-    console.log(this.state.username);
+    //console.log(this.state.lat);
+    //console.log(this.state.lon);
+    //console.log(this.state.username);
 
     // currently doing conditional redendring andrew looking into redux
     if (this.state.page === 'landing') {

@@ -7,9 +7,16 @@ import Typography from '@material-ui/core/Typography';
 import SearchBar from '../../SearchBar';
 import API from '../../../utils/API';
 import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import Skyline from './../../../styles/images/skyline.svg';
 
 const styles = theme => ({
+  root: {
+    backgroundImage: `url(${Skyline})`,
+    backgroundRepeat: 'repeat-x',
+    backgroundAttachment: 'fixed',
+    position: 'left bottom'
+  },
   container: {
     backgroundColor: theme.palette.background.paper,
     [theme.breakpoints.up('lg')]: {
@@ -46,8 +53,6 @@ class Home extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.props.userId);
-    console.log('home props: ', this.props)
     return (
       <div className={classes.root} >
         <Navbar logout={this.props.logout} userId={this.props.userId} username={this.props.username} setPage={this.props.setPage}/>

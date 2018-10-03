@@ -29,7 +29,6 @@ class Auth0 extends Component {
   };
 
   LoginHandler = () => {
-    console.log(this.props.userId);
     if(this.props.userId === 'loggedOut'){
       auth0Client.signIn();
     }else{
@@ -39,9 +38,7 @@ class Auth0 extends Component {
   };
 
   render() {
-    console.log(this.props.userId);
     const { classes } = this.props;
-    console.log(this.props.username)
     return (
       <div>
         {
@@ -52,7 +49,6 @@ class Auth0 extends Component {
           auth0Client.isAuthenticated() &&
           <div>
             <Popover userId={this.props.userId} username={this.props.username} setPage={this.props.setPage}>
-            {console.log(this.props)}
               <ListItem button onClick={this.LoginHandler}>
                 <ListItemIcon>
                   <MeetingRoomIcon />

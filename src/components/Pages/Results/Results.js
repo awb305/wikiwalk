@@ -74,6 +74,7 @@ class Results extends Component {
       .then(idArray => {
         if(idArray.length > 0){
         API.idSearch(idArray).then(res => {
+          console.log(res);
           const data= res.data.query.pages;
 
           let content = [];
@@ -105,6 +106,7 @@ class Results extends Component {
  generateContent = (data, favorite) => {
   return data.map(article => (
       <Result 
+        articleId={article.id ? article.id : null}
         userId={this.props.userId}
         title={article.title} 
         body={article.body} 
@@ -113,13 +115,13 @@ class Results extends Component {
         url={article.url}
         favorite={favorite}
         key={article.page_id}
+        data={article}
         />
   ));
  }
   
 render() {
 const {classes, favs } = this.props;
-console.log(this.state.data)
 let content = this.generateContent(this.state.data);
 
 return(

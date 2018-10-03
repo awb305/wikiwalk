@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, withTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
@@ -39,6 +39,9 @@ const styles = theme => ({
     '&:hover': {
       color: theme.palette.secondary.main,
     }
+  },
+  showbtn: {
+    marginTop: '1rem'
   }
 
 });
@@ -50,22 +53,49 @@ class Header extends React.Component {
     favorited: this.props.favorited
   }
 
+  
   handleClick = event => {
-    if(this.state.favorited){
-      this.setState({favorited: false});
-      //delete route
-    }else{
-      this.setState({favorited: true});
-      console.log(this.props);
-      DB.postFavorite(this.props.data)
-        .then(res => {
-          console.log(res);
+    const article = this.props.data
+    DB.getUserData(this.props.data.user_id)
+      .then(res => {
+        console.log('user favs: ', res)
+        return res.data.filter(fav => fav.page_id == article.page_id)[0];
+      }).then(match => {
+        if(match){
+          console.log(match);
+          const newfav = !match.favorited;
+          DB.putFavorite(match.user_id, match.id, newfav)
+            .then(res => {
+              console.log(res);
+            });
+        }else{
+          DB.postFavorite(this.props.data)
+            .then(res => {
+              console.log(res);
+            });
+        }
+      }).then(() => {
+        if(this.state.favorited){
+          this.setState({favorited: false});
+        } else {
+          this.setState({favorited: true});
+        }
+      });
+  }
+
+  setFavorites = article => {
+    DB.getFavorites(article.user_id)
+      .then(res => {
+        res.data.forEach(fav => {
+          if (article.page_id == fav.page_id) {
+            this.setState({favorited: true});
+          }
         });
-    }
+      });
   }
 
   render(){
-    
+    this.setFavorites(this.props.data);
    
     return(
       <React.Fragment>
@@ -85,20 +115,31 @@ class Header extends React.Component {
 }
 
 const Body = props => {
+  const shortBlurb = props.body.match(/^(.*?)[.?!]\s/)[0];
+  const shortBlurb2 = (function () {
+    const bodyLength = props.body.length;
+    if(bodyLength > 124){
+      return props.body.slice(0, 124) + ' . . .';
+    }
+  }());
 
   return(
     <React.Fragment>
       <Grid item className={props.class.body}>
-        <div className={props.in ? null: 'gradient-blur'}>
-          <Collapse in={props.in} collapsedHeight="100px" onClick={props.click}>
+        <div>
+          <Collapse 
+            in={props.in} 
+            collapsedHeight="40px"
+            onClick={props.click}
+          >
               <Typography className={props.class.text}>
-                {props.body}
+                {props.in ? props.body : shortBlurb2}
               </Typography>
           </Collapse>
         </div>
-        <Typography onClick={props.click}>
+        <Button color="primary" className={props.class.showbtn} onClick={props.click}>
             {props.in ? '...Show less': 'Show more...'}
-          </Typography>
+          </Button>
       </Grid>
     </React.Fragment>
   );
@@ -137,7 +178,8 @@ class Result extends React.Component {
   render(){
     const { classes } = this.props;
     const data = {
-      user_id: this.props.userId.split('|')[1],
+      id: this.props.articleId,
+      user_id: this.props.userId,
       page_id: this.props.pageId,
       title: this.props.title,
       body: this.props.body,
@@ -147,6 +189,7 @@ class Result extends React.Component {
       favorited: true
     }
     const collapsed = this.state.collapsed
+    console.log(data);
     return (
       <div>
         <Paper className={classes.root}>

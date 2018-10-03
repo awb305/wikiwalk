@@ -5,11 +5,18 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Logo from './../../Logo';
 import Button from '@material-ui/core/Button';
+import Skyline from './skyline.png';
+import SkylineSVG from './skyline.svg';
 
 
 const styles = theme => ({
+  root: {
+    backgroundImage: `url(${SkylineSVG})`,
+    backgroundRepeat: 'repeat-x',
+    backgroundAttatchement: 'fixed',
+    backgroundPosition: '0px 65px',
+  },
   container: {
-    backgroundColor: theme.palette.background.paper,
     [theme.breakpoints.up('lg')]: {
       margin: 'auto',
       width: '75%'
@@ -20,6 +27,7 @@ const styles = theme => ({
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 7,
     paddingBottom: theme.spacing.unit * 7,
+    backgroundColor: 'rgba(252,252,252,0.7)',
   },
   margins: {
     ...theme.mixins.gutters(),
@@ -35,19 +43,20 @@ const styles = theme => ({
   bodytext: {
     fontSize: '12px'
   },
-  skyline: {
-    backgroundImage: `url(${'./skyline.svg'})`
+  aboutus: {
+    backgroundColor: theme.palette.background.paper
   }
+
 });
 
 const Landing = props => {
   const { classes } = props;
   return(
-    <div>
+    <div className={classes.root}>
       <Navbar logout={props.logout} userId={props.userId} username={props.username} setPage={props.setPage}/>
-      {console.log(props)}
+      
       <div className={classes.container}>
-        <div className={classes.skyline}>
+        <div>
           <Grid container direction="row" alignItems="center" justify="center" className={classes.jumbo}>
             <Grid item>
                 <Typography variant="display3">
@@ -62,7 +71,7 @@ const Landing = props => {
             </Grid>
           </Grid>
         </div>
-      <Grid container justify="center" alignItems="center">
+      <Grid container direction="column" justify="center" alignItems="center" className={classes.aboutus}>
         <Grid item xs={8}>
           <Typography variant="display2" align="center" className={classes.margins}>
             About us
@@ -75,14 +84,11 @@ const Landing = props => {
              Life happens, and we don't want you to miss a moment of it!
           </Typography>
         </Grid>
-      </Grid>
-      <Grid container justify="center" alignItems="center">
         <Grid item>
-        <Button color="secondary" variant="contained" className={classes.margins}>Click here to Login or Signup!</Button>
+          <Button color="secondary" variant="contained" className={classes.margins}>Click here to Login or Signup!</Button>
         </Grid>
       </Grid>
       </div>
-      <img src="/src/images/skyline.svg" alt="skyline" />
     </div>
   );
 }
