@@ -5,7 +5,7 @@ import Result from './Result';
 import { Typography } from '@material-ui/core';
 import DB from './../../../utils/DB';
 import API from '../../../utils/API';
-import Map from './GoogleMaps/Maps';
+import GoogleMapsContainer from './GoogleMaps/GoogleMaps';
 
 const styles = theme => ({
   toolbar: theme.mixins.toolbar, 
@@ -22,8 +22,8 @@ class Results extends Component {
     geoArray: [],
     idArray: [],
     content: {},
-    /* lon: this.props.lon,
-    lat: this.props.lat, */
+    lon: null,
+    lat: null,
     radius: 10000,
     limit: 10
   };
@@ -46,7 +46,7 @@ class Results extends Component {
       idArray.push(element.pageid);
     });
     this.setState({
-      idArray: idArray
+      idArray: idArray,
     });
   };
 
@@ -57,7 +57,10 @@ class Results extends Component {
     let lon = this.props.lon;
     console.log("lattitue", lat);
     console.log("longitude", lon);
-
+    this.setState({
+      lat: lat,
+      lon: lon
+    });
 
     API.geoSearch(
       lat,
@@ -120,11 +123,14 @@ let content = contentArray.map(article => {
     <Result title={article.title} body={article.extract} /* breadcrumb={article.breadcrumb} */ url={article.fullurl} key={article.pageid} /* favorited={article.favorited} *//>
   )
 });
+console.log('hit ', this.state.geoArray);
 return(
       <div>
         <Navbar logout={this.props.logout} userId={this.props.userId} />
         <div className={ classes.toolbar }>
-        <Map />
+        <GoogleMapsContainer
+          geoArray={this.state.geoArray} lat={this.state.lat} lon={this.state.lon}
+        />
         <Typography variant="display2" className={classes.header}>
           {favs ? "Favorites" : "Results"}
         </Typography>
