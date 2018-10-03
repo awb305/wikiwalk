@@ -33,9 +33,8 @@ class GoogleMapsContainer extends React.Component {
   }
   render() {
     const style = {
-        width: '100%',
-        height: '100%',
-        position: 'relative'
+      width: '100%',
+      height: '75vh',
       }
     return (
       <Map
@@ -71,7 +70,7 @@ class GoogleMapsContainer extends React.Component {
               variant = 'headline'
               component = 'h4'
             >
-              Location
+              {console.log('title ', this.props.geoArray[0])}
             </Typography>
           </Paper>
         </InfoWindow>
