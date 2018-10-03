@@ -1,0 +1,6 @@
+.background {
+  background-image: url('./../../../styles/images/skyline.svg');
+  background-position: right bottom;
+  background-attachment: fixed;
+  background-repeat: repeat-x;
+}

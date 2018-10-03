@@ -5,11 +5,11 @@ import Result from './Result';
 import { Typography } from '@material-ui/core';
 import DB from './../../../utils/DB';
 import API from '../../../utils/API';
+import './background.css'
 
 const styles = theme => ({
   toolbar: theme.mixins.toolbar, 
   container: {
-    backgroundColor: theme.palette.background.default,
     [theme.breakpoints.up('lg')]: {
       margin: 'auto',
       width: '75%'
@@ -125,7 +125,7 @@ const {classes, favs } = this.props;
 let content = this.generateContent(this.state.data);
 
 return(
-      <div>
+      <div className="background">
         <Navbar logout={this.props.logout} userId={this.props.userId} username={this.props.username} setPage={this.props.setPage}/>
         <div className={classes.toolbar}>
           <div className={ classes.container }>

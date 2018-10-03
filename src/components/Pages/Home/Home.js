@@ -9,13 +9,14 @@ import API from '../../../utils/API';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import Skyline from './../../../styles/images/skyline.svg';
+import './background.css';
 
 const styles = theme => ({
   root: {
     backgroundImage: `url(${Skyline})`,
     backgroundRepeat: 'repeat-x',
     backgroundAttachment: 'fixed',
-    position: 'left bottom'
+    position: '100%, 100%'
   },
   container: {
     backgroundColor: theme.palette.background.paper,
@@ -54,7 +55,7 @@ class Home extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.root} >
+      <div className="background" >
         <Navbar logout={this.props.logout} userId={this.props.userId} username={this.props.username} setPage={this.props.setPage}/>
         <div className={classes.container}>
           <Grid
