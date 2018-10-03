@@ -42,9 +42,11 @@ class Home extends React.Component {
   componentDidMount() {
     if (this.props.userId === 'loggedOut') {
       console.log(this.props.userId);
-      this.setId();
+      this.setId(); 
     }
   };
+
+  /* Grabs user and sets it to Store - since /home is where auth0 reroutes we need the below handeling.*/
 
   getId = () => {
     if(this.props.userId === 'loggedOut'){
@@ -67,7 +69,7 @@ class Home extends React.Component {
     console.log(loginId);
     this.props.onSetUserId(loginId.sub);
 
-  };
+  }; 
 
   retrieveCoords = () => {
     return new Promise( (resolve, reject) => {
@@ -85,7 +87,6 @@ class Home extends React.Component {
   }
 
   setCoords = async () => {
-    
     const location = await this.retrieveCoords();
     this.props.onSetCoords(location.coords.latitude,location.coords.longitude);
     console.log("Redirect");
