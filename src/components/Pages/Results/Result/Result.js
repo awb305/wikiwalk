@@ -8,6 +8,8 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Paper from '@material-ui/core/Paper';
 import DB from './../../../../utils/DB';
 import Collapse from '@material-ui/core/Collapse';
+import './styles.css';
+
 
 const styles = theme => ({
   root: {
@@ -87,11 +89,13 @@ const Body = props => {
   return(
     <React.Fragment>
       <Grid item className={props.class.body}>
-        <Collapse in={props.in} collapsedHeight="100px" onClick={props.click}>
-          <Typography className={props.class.text}>
-            {props.body}
-          </Typography>
-        </Collapse>
+        <div className={props.in ? null: 'gradient-blur'}>
+          <Collapse in={props.in} collapsedHeight="100px" onClick={props.click}>
+              <Typography className={props.class.text}>
+                {props.body}
+              </Typography>
+          </Collapse>
+        </div>
         <Typography onClick={props.click}>
             {props.in ? '...Show less': 'Show more...'}
           </Typography>
@@ -122,12 +126,14 @@ const Foot = props => {
 
 class Result extends React.Component {
   state = {
-    collapsed: false
+    collapsed: false,
   }
+
 
   handleCollapse = () => {
     this.setState(state => ({collapsed: !state.collapsed}));
   }
+
   render(){
     const { classes } = this.props;
     const data = {

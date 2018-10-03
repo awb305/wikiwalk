@@ -6,13 +6,20 @@ import Typography from '@material-ui/core/Typography';
 import Logo from './../../Logo';
 import Button from '@material-ui/core/Button';
 
+
 const styles = theme => ({
+  container: {
+    backgroundColor: theme.palette.background.paper,
+    [theme.breakpoints.up('lg')]: {
+      margin: 'auto',
+      width: '75%'
+    }
+  },
   toolbar: theme.mixins.toolbar, 
   jumbo: {
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 7,
     paddingBottom: theme.spacing.unit * 7,
-    backgroundColor: theme.palette.primary.light
   },
   margins: {
     ...theme.mixins.gutters(),
@@ -27,6 +34,9 @@ const styles = theme => ({
   }, 
   bodytext: {
     fontSize: '12px'
+  },
+  skyline: {
+    backgroundImage: `url(${'./skyline.svg'})`
   }
 });
 
@@ -34,20 +44,23 @@ const Landing = props => {
   const { classes } = props;
   return(
     <div>
-      <Navbar/>
-      <Grid container direction="row" alignItems="center" justify="center" className={classes.jumbo}>
-        <Grid item>
-            <Typography variant="display3">
-              Wiki Walking Tours
-            </Typography>
-            <Typography variant="display1">
-              Walk n' Learn
-            </Typography>
-        </Grid>
-        <Grid item>
-          <Logo color="primary" class={classes.bigLogo}/>
-        </Grid>
-      </Grid>
+      <Navbar logout={props.logout} userId={props.userId} setPage={props.setPage}/>
+      <div className={classes.container}>
+        <div className={classes.skyline}>
+          <Grid container direction="row" alignItems="center" justify="center" className={classes.jumbo}>
+            <Grid item>
+                <Typography variant="display3">
+                  Wiki Walking Tours
+                </Typography>
+                <Typography variant="display1">
+                  Walk n' Learn
+                </Typography>
+            </Grid>
+            <Grid item>
+              <Logo color="primary" class={classes.bigLogo}/>
+            </Grid>
+          </Grid>
+        </div>
       <Grid container justify="center" alignItems="center">
         <Grid item xs={8}>
           <Typography variant="display2" align="center" className={classes.margins}>
@@ -67,6 +80,8 @@ const Landing = props => {
         <Button color="secondary" variant="contained" className={classes.margins}>Click here to Login or Signup!</Button>
         </Grid>
       </Grid>
+      </div>
+      <img src="/src/images/skyline.svg" alt="skyline" />
     </div>
   );
 }

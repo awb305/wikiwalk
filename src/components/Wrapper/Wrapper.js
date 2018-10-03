@@ -8,18 +8,18 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
-import Callback from '../../Callback';
+//import Callback from '../../Callback';
 import Home from '../Pages/Home';
 import auth0Client from '../../utils/Auth';
 import jwt from 'jsonwebtoken';
 import Landing from './../Pages/Landing';
-import Sample from '../Sample';
+//import Sample from '../Sample';
 import Results from '../Pages/Results';
 
 class Wrapper extends React.Component {
   state = {
     userId: 'loggedOut',
-    page: "home",
+    page: "landing",
     lon: -80.8431,
     lat: 35.2271,
     
@@ -74,17 +74,12 @@ class Wrapper extends React.Component {
 
   }
   
-
-
   logout = () => {
     auth0Client.signOut();
     this.setState({
       userId: 'loggedOut'
     })
   };
-
-
-
 
   componentDidMount() {
     if (this.state.userId === 'loggedOut') {
@@ -104,7 +99,17 @@ class Wrapper extends React.Component {
     console.log(this.state.lon);
 
     // currently doing conditional redendring andrew looking into redux
-    if(this.state.page === 'home'){
+    if (this.state.page === 'landing') {
+      return (
+        <Landing 
+          logout = {
+            this.logout
+          } 
+          userId={this.state.userId}
+          setPage={this.setPage} />
+      );
+    }
+    else if(this.state.page === 'home'){
       return <Home logout = {
         this.logout
       } 

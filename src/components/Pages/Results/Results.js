@@ -8,6 +8,13 @@ import API from '../../../utils/API';
 
 const styles = theme => ({
   toolbar: theme.mixins.toolbar, 
+  container: {
+    backgroundColor: theme.palette.background.default,
+    [theme.breakpoints.up('lg')]: {
+      margin: 'auto',
+      width: '75%'
+    }
+  },
   header: {
     ...theme.mixins.gutters(),
     marginTop: theme.spacing.unit * 2,
@@ -75,7 +82,7 @@ class Results extends Component {
               title: data[prop].title,
               body: data[prop].extract,
               url: data[prop].fullurl,
-              pageId: prop
+              page_id: prop
             };
 
             content.push(article);
@@ -98,13 +105,14 @@ class Results extends Component {
  generateContent = (data, favorite) => {
   return data.map(article => (
       <Result 
+        userId={this.props.userId}
         title={article.title} 
         body={article.body} 
+        pageId={article.page_id}
         /* breadcrumb={article.breadcrumb} */ 
-        url={article.url} key={article.pageid} 
-        userId={this.props.userId}
+        url={article.url}
         favorite={favorite}
-        key={article.pageid}
+        key={article.page_id}
         />
   ));
  }
@@ -117,11 +125,13 @@ let content = this.generateContent(this.state.data);
 return(
       <div>
         <Navbar logout={this.props.logout} userId={this.props.userId} setPage={this.props.setPage}/>
-        <div className={ classes.toolbar }>
-        <Typography variant="display2" className={classes.header}>
-          {favs ? "Favorites" : "Results"}
-        </Typography>
-        {content}
+        <div className={classes.toolbar}>
+          <div className={ classes.container }>
+          <Typography variant="display2" className={classes.header}>
+            {favs ? "Favorites" : "Results"}
+          </Typography>
+          {content}
+          </div>
         </div>
       </div>
     );

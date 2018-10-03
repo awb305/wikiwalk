@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import Button from '@material-ui/core/Button'
 import auth0Client from '../../utils/Auth';
 import Popover from './Popover';
@@ -50,6 +52,9 @@ class Auth0 extends Component {
           <div>
             <Popover userId={this.props.userId} setPage={this.props.setPage}>
               <ListItem button onClick={this.LoginHandler}>
+                <ListItemIcon>
+                  <MeetingRoomIcon />
+                </ListItemIcon>
                 <ListItemText primary="Sign Out" />
               </ListItem>
             </Popover>

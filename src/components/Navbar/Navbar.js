@@ -39,7 +39,7 @@ class Navbar extends React.Component {
           color="primary"
         >
           <Toolbar>
-            <div onClick={() => this.props.setPage('home')}>
+            <div onClick={() => this.props.setPage('landing')}>
 
               <Logo color="secondary" class={classes.logo}/>
             </div>

@@ -10,6 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import PersonIcon from '@material-ui/icons/PersonOutlined';
 import FavoriteIcon from '@material-ui/icons/FavoriteOutlined';
+import DeveloperBoardIcon from '@material-ui/icons/DeveloperBoard';
 import SearchIcon from '@material-ui/icons/Search';
 import UserIcon from './UserIcon';
 
@@ -93,6 +94,12 @@ class UserMenu extends React.Component {
                   <SearchIcon />
                 </ListItemIcon>
                 <ListItemText primary="Search" />
+              </ListItem>
+              <ListItem button>
+                <ListItemIcon>
+                  <DeveloperBoardIcon />
+                </ListItemIcon>
+                <ListItemText primary="API" />
               </ListItem>
               <Divider />
                 {this.props.children}

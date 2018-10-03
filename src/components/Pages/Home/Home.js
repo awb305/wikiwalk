@@ -10,6 +10,13 @@ import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom'
 
 const styles = theme => ({
+  container: {
+    backgroundColor: theme.palette.background.paper,
+    [theme.breakpoints.up('lg')]: {
+      margin: 'auto',
+      width: '50%'
+    }
+  },
   pBottom: {
     paddingBottom: '5rem'
   }
@@ -42,34 +49,36 @@ class Home extends React.Component {
     console.log(this.props.userId);
     console.log('home props: ', this.props)
     return (
-      <div>
+      <div className={classes.root} >
         <Navbar logout={this.props.logout} userId={this.props.userId} setPage={this.props.setPage}/>
-        <Grid
-          container
-          direction="column"
-          justify="center"
-          alignItems="center"
-          alignContent="center"
-          style={{ height: this.state.viewport.height + 'px' }}
-        >
-          <Grid item className={classes.pBottom}>
-          <div onClick={this.props.setCoords}>
-            <CoolBtn />
-           </div> 
+        <div className={classes.container}>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+            alignContent="center"
+            style={{ height: this.state.viewport.height + 'px' }}
+          >
+            <Grid item className={classes.pBottom}>
+            <div onClick={this.props.setCoords}>
+              <CoolBtn />
+            </div> 
+            </Grid>
+            <Grid item className={classes.pBottom}>
+              <Typography variant="display1" align="center">
+                Or <br /> Find cool things somewhere else
+              </Typography>
+            </Grid>
+            <Grid item>
+              <SearchBar
+                value={this.state.query}
+                onChange={this.handleInputChange}
+              />
+              <p>{this.state.query}</p>
+            </Grid>
           </Grid>
-          <Grid item className={classes.pBottom}>
-            <Typography variant="display1" align="center">
-              Or <br /> Find cool things somewhere else
-            </Typography>
-          </Grid>
-          <Grid item>
-            <SearchBar
-              value={this.state.query}
-              onChange={this.handleInputChange}
-            />
-            <p>{this.state.query}</p>
-          </Grid>
-        </Grid>
+        </div>
       </div>
     );
   }
