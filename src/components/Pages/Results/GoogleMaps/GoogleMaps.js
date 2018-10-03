@@ -2,6 +2,7 @@ import React from 'react';
 import { GoogleApiWrapper, InfoWindow, Map, Marker } from 'google-maps-react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import { relative } from 'path';
 
 class GoogleMapsContainer extends React.Component {
   constructor(props) {
@@ -33,7 +34,8 @@ class GoogleMapsContainer extends React.Component {
   render() {
     const style = {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        position: 'relative'
       }
     return (
       <Map
@@ -69,13 +71,7 @@ class GoogleMapsContainer extends React.Component {
               variant = 'headline'
               component = 'h4'
             >
-              Changing Colors Garage
-            </Typography>
-            <Typography
-              component = 'p'
-            >
-              98G Albe Dr Newark, DE 19702 <br />
-              302-293-8627
+              Location
             </Typography>
           </Paper>
         </InfoWindow>

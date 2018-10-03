@@ -127,10 +127,10 @@ console.log('hit ', this.state.geoArray);
 return(
       <div>
         <Navbar logout={this.props.logout} userId={this.props.userId} />
-        <div className={ classes.toolbar }>
         <GoogleMapsContainer
           geoArray={this.state.geoArray} lat={this.state.lat} lon={this.state.lon}
         />
+        <div className={ classes.toolbar }>
         <Typography variant="display2" className={classes.header}>
           {favs ? "Favorites" : "Results"}
         </Typography>
