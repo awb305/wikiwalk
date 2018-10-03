@@ -19,6 +19,7 @@ class App extends Component {
             <div>
               <Route exact path="/" component={Landing} />
               <Route exact path="/home" component={Home} />
+              <Route exact path="/results" component={Results} />
               <Route exact path="/callback" component={Callback} />
             </div>
           </Router>

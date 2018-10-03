@@ -29,7 +29,8 @@ class Home extends React.Component {
       width: window.innerWidth,
       height: window.innerHeight
     },
-    query: 'Location'
+    query: 'Location',
+    redirect: false
   };
 
   componentWillMount() {
@@ -45,6 +46,19 @@ class Home extends React.Component {
       this.setId();
     }
   };
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+    this.props.history.push('/results');
+     
+    }
+  }
 
   getId = () => {
     if(this.props.userId === 'loggedOut'){
@@ -68,6 +82,39 @@ class Home extends React.Component {
     this.props.onSetUserId(loginId.sub);
 
   };
+
+  retrieveCoords = () => {
+    return new Promise( (resolve, reject) => {
+      navigator.geolocation.getCurrentPosition((location) => {
+        console.log(location.coords.latitude);
+        console.log(location.coords.longitude);
+        console.log(location.coords.accuracy);
+        if (location.coords !== null) {
+          resolve(location);
+        } else {
+          reject(console.error());
+        }
+      });
+    });
+  }
+
+  setCoords = async () => {
+    
+    const location = await this.retrieveCoords();
+    console.log(location);
+   /*  this.setState({
+      lat: location.coords.latitude,
+      lon: location.coords.longitude,
+      page: "results"
+    }); */
+    this.props.onSetCoords(location.coords.latitude,location.coords.longitude);
+    this.props.history.push('/results');
+   /*  this.setState({
+      redirect: true
+    },() => this.renderRedirect()); */
+    
+  }
+
 
 
   handleInputChange = event => {
@@ -97,7 +144,7 @@ class Home extends React.Component {
           }}
         >
           <Grid item className={classes.pBottom}>
-            <div onClick={this.props.onSetCoords(5,4)}>
+            <div onClick={this.setCoords}>
               <CoolBtn />
             </div>{' '}
           </Grid>{' '}
