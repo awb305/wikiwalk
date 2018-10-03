@@ -10,15 +10,7 @@ import jwt from 'jsonwebtoken';
 import { connect } from 'react-redux';
 import { setUserId } from '../../actions/setUserId-action';
 
-const mapStateToProps = state => ({
-  userId: state.userId
-});
 
-// makes the 'onSetUserId' to the prop that corresponds to the setUserId which was imported from actions
-
-const mapActionsToProps = {
-  onSetUserId: setUserId
-};
 
 
 class Auth0 extends Component {
@@ -113,7 +105,15 @@ class Auth0 extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  userId: state.userId
+});
 
+// makes the 'onSetUserId' to the prop that corresponds to the setUserId which was imported from actions
+
+const mapActionsToProps = {
+  onSetUserId: setUserId
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(Auth0);
 

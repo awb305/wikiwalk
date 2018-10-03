@@ -30,7 +30,6 @@ class Home extends React.Component {
       height: window.innerHeight
     },
     query: 'Location',
-    redirect: false
   };
 
   componentWillMount() {
@@ -46,19 +45,6 @@ class Home extends React.Component {
       this.setId();
     }
   };
-
-  setRedirect = () => {
-    this.setState({
-      redirect: true
-    })
-  }
-
-  renderRedirect = () => {
-    if (this.state.redirect) {
-    this.props.history.push('/results');
-     
-    }
-  }
 
   getId = () => {
     if(this.props.userId === 'loggedOut'){
@@ -101,18 +87,10 @@ class Home extends React.Component {
   setCoords = async () => {
     
     const location = await this.retrieveCoords();
-    console.log(location);
-   /*  this.setState({
-      lat: location.coords.latitude,
-      lon: location.coords.longitude,
-      page: "results"
-    }); */
     this.props.onSetCoords(location.coords.latitude,location.coords.longitude);
+    console.log("Redirect");
     this.props.history.push('/results');
-   /*  this.setState({
-      redirect: true
-    },() => this.renderRedirect()); */
-    
+    console.log("After");
   }
 
 

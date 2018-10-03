@@ -5,6 +5,9 @@ import Result from './Result';
 import { Typography } from '@material-ui/core';
 import DB from './../../../utils/DB';
 import API from '../../../utils/API';
+import { compose } from 'recompose';
+
+import { connect } from 'react-redux';
 
 const styles = theme => ({
   toolbar: theme.mixins.toolbar, 
@@ -17,6 +20,9 @@ const styles = theme => ({
 
 
 class Results extends Component {
+
+
+
   state = {
     geoArray: [],
     idArray: [],
@@ -27,8 +33,14 @@ class Results extends Component {
     limit: 10
   };
 
+  componentDidUpdate(){
+    this.search();
+  }
+
   componentDidMount() {
-    if(this.props.favs){
+    console.log("test");  
+    this.search();
+    /* if(this.props.favs){
       DB.getFavorites('114167404198811874512')
         .then(res => {
           console.log(res);
@@ -36,7 +48,7 @@ class Results extends Component {
         });
     }else{
       this.search();
-    }
+    } */
   }
 
   pageIdArray = () => {
@@ -112,6 +124,9 @@ class Results extends Component {
   
 
 render() {
+
+  console.log("Andrew");  
+console.log(this.props.lat);  
 const {classes, favs } = this.props;
 let contentArray = this.renderContent();
 let content = contentArray.map(article => {
@@ -119,9 +134,11 @@ let content = contentArray.map(article => {
     <Result title={article.title} body={article.extract} /* breadcrumb={article.breadcrumb} */ url={article.fullurl} key={article.pageid} /* favorited={article.favorited} *//>
   )
 });
+
+
 return(
       <div>
-        <Navbar logout={this.props.logout} userId={this.props.userId} />
+        <Navbar/>
         <div className={ classes.toolbar }>
         <Typography variant="display2" className={classes.header}>
           {favs ? "Favorites" : "Results"}
@@ -135,7 +152,20 @@ return(
 
 };
 
-export default withStyles(styles)(Results);
+//export default withStyles(styles)(Results);
+
+const mapStateToProps = state => ({
+  lat: state.coords.lat,
+  lon: state.coords.lon
+});
+
+// makes the 'onSetUserId' to the prop that corresponds to the setUserId which was imported from actions
+
+
+
+export default compose(
+  withStyles(styles, {name: 'Result'}),
+  connect(mapStateToProps, null))(Results);
 
 
 
