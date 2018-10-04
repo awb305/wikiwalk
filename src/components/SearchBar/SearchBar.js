@@ -2,8 +2,7 @@ import React, { Fragment } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
+
 
 
 const styles = theme => ({
@@ -26,9 +25,13 @@ const styles = theme => ({
     borderRadius: '0px 5px 5px 0px',
     border: 'solid 1px #BDBDBD',
     borderLeft: 'none', 
+    transition: theme.transitions.create(
+      ['background-color'],
+      {duration: theme.transitions.duration.standard}
+    ),
     '&:hover': {
       backgroundColor: theme.palette.primary.main,
-      
+      cursor: 'pointer'
     }
   },
   searchBar: {
@@ -36,7 +39,8 @@ const styles = theme => ({
   },
   outline: {
     borderRadius: '5px 0px 0px 5px'
-  }
+  },
+  focusVisible: {}
 });
 
 const SearchBar = props => {
@@ -64,7 +68,7 @@ const SearchBar = props => {
           }}
         />
         <div className={classes.iconBtn}>
-          <SearchIcon />
+            <SearchIcon />
         </div>
       </div>
   );

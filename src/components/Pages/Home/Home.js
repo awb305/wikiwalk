@@ -7,9 +7,24 @@ import Typography from '@material-ui/core/Typography';
 import SearchBar from '../../SearchBar';
 import API from '../../../utils/API';
 import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import Skyline from './../../../styles/images/skyline.svg';
+import './background.css';
 
 const styles = theme => ({
+  root: {
+    backgroundImage: `url(${Skyline})`,
+    backgroundRepeat: 'repeat-x',
+    backgroundAttachment: 'fixed',
+    position: '100%, 100%'
+  },
+  container: {
+    backgroundColor: theme.palette.background.paper,
+    [theme.breakpoints.up('lg')]: {
+      margin: 'auto',
+      width: '50%'
+    }
+  },
   pBottom: {
     paddingBottom: '5rem'
   }
@@ -39,36 +54,37 @@ class Home extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.props.userId);
     return (
-      <div>
-        <Navbar logout={this.props.logout} userId={this.props.userId}/>
-        <Grid
-          container
-          direction="column"
-          justify="center"
-          alignItems="center"
-          alignContent="center"
-          style={{ height: this.state.viewport.height + 'px' }}
-        >
-          <Grid item className={classes.pBottom}>
-          <div onClick={this.props.setCoords}>
-            <CoolBtn />
-           </div> 
+      <div className="background" >
+        <Navbar logout={this.props.logout} userId={this.props.userId} username={this.props.username} setPage={this.props.setPage}/>
+        <div className={classes.container}>
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+            alignContent="center"
+            style={{ height: this.state.viewport.height + 'px' }}
+          >
+            <Grid item className={classes.pBottom}>
+            <div onClick={this.props.setCoords}>
+              <CoolBtn />
+            </div> 
+            </Grid>
+            <Grid item className={classes.pBottom}>
+              <Typography variant="display1" align="center">
+                Or <br /> Find cool things somewhere else
+              </Typography>
+            </Grid>
+            <Grid item>
+              <SearchBar
+                value={this.state.query}
+                onChange={this.handleInputChange}
+              />
+              <p>{this.state.query}</p>
+            </Grid>
           </Grid>
-          <Grid item className={classes.pBottom}>
-            <Typography variant="display1" align="center">
-              Or <br /> Find cool things somewhere else
-            </Typography>
-          </Grid>
-          <Grid item>
-            <SearchBar
-              value={this.state.query}
-              onChange={this.handleInputChange}
-            />
-            <p>{this.state.query}</p>
-          </Grid>
-        </Grid>
+        </div>
       </div>
     );
   }
