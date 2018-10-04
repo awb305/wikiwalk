@@ -55,7 +55,7 @@ class Home extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className="background" >
+      <div>
         <Navbar logout={this.props.logout} userId={this.props.userId} username={this.props.username} setPage={this.props.setPage}/>
         <div className={classes.container}>
           <Grid

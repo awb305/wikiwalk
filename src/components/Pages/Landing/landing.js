@@ -5,17 +5,11 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Logo from './../../Logo';
 import Button from '@material-ui/core/Button';
-import Skyline from './skyline.png';
 import SkylineSVG from './skyline.svg';
 
 
+
 const styles = theme => ({
-  root: {
-    backgroundImage: `url(${SkylineSVG})`,
-    backgroundRepeat: 'repeat-x',
-    backgroundAttatchement: 'fixed',
-    backgroundPosition: '0px 65px',
-  },
   container: {
     [theme.breakpoints.up('lg')]: {
       margin: 'auto',
@@ -23,6 +17,11 @@ const styles = theme => ({
     }
   },
   toolbar: theme.mixins.toolbar, 
+  jumboBackground: {
+    backgroundImage: `url(${SkylineSVG})`,
+    backgroundRepeat: 'repeat-x',
+    backgroundAttatchement: 'fixed',
+  },
   jumbo: {
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 7,
@@ -56,7 +55,7 @@ const Landing = props => {
       <Navbar logout={props.logout} userId={props.userId} username={props.username} setPage={props.setPage}/>
       
       <div className={classes.container}>
-        <div>
+        <div className={classes.jumboBackground}>
           <Grid container direction="row" alignItems="center" justify="center" className={classes.jumbo}>
             <Grid item>
                 <Typography variant="display3">
