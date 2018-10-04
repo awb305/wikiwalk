@@ -148,9 +148,6 @@ return(
         <Navbar logout={this.props.logout} userId={this.props.userId} username={this.props.username} setPage={this.props.setPage}/>
         <div className={classes.toolbar}>
           <div className={ classes.container }>
-          <GoogleMapsContainer
-          geoArray={this.state.geoArray} lat={this.state.lat} lon={this.state.lon}
-          />
           <Typography variant="display2" className={classes.header}>
             {favs ? "Favorites" : "Results"}
           </Typography>
