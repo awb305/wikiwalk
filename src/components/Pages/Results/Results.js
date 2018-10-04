@@ -40,9 +40,7 @@ class Results extends Component {
     if(favorites){
       DB.getFavorites(this.props.userId.split('|')[1])
         .then(res => {
-          console.log('response', res.data)
           this.setState({data: res.data});
-          console.log(this.state.data)
         });
     }else{
       this.search();
@@ -70,8 +68,6 @@ class Results extends Component {
   search = () => {
     let lat = this.props.lat;
     let lon = this.props.lon;
-    console.log("lattitue", lat);
-    console.log("longitude", lon);
     this.setState({
       lat: lat,
       lon: lon
@@ -92,7 +88,6 @@ class Results extends Component {
       .then(idArray => {
         if(idArray.length > 0){
         API.idSearch(idArray).then(res => {
-          console.log(res);
           const data= res.data.query.pages;
 
           let content = [];

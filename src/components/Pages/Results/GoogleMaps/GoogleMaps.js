@@ -1,8 +1,5 @@
 import React from 'react';
 import { GoogleApiWrapper, InfoWindow, Map, Marker } from 'google-maps-react';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import { relative } from 'path';
 
 class GoogleMapsContainer extends React.Component {
   constructor(props) {
@@ -18,7 +15,7 @@ class GoogleMapsContainer extends React.Component {
   }
   onMarkerClick = (props, marker, e) => {
     this.setState({
-      selectedPlace: props,
+      selectedPlace: props.name,
       activeMarker: marker,
       showingInfoWindow: true
     });
@@ -51,28 +48,22 @@ class GoogleMapsContainer extends React.Component {
           if (element.lat === null || element.lon === null) {
             return null;
           } else {
-            return <Marker
+            return (
+            <Marker
             key = { element.pageid }
             onClick = { this.onMarkerClick }
             title = { element.title }
             position = {{ lat: element.lat, lng: element.lon }}
             name = { element.title }
           />
-          }
+            )}
         })
       }
         <InfoWindow
           marker = { this.state.activeMarker }
           visible = { this.state.showingInfoWindow }
         >
-          <Paper>
-            <Typography
-              variant = 'headline'
-              component = 'h4'
-            >
-            {this.props.name}
-            </Typography>
-          </Paper>
+          {this.state.selectedPlace}
         </InfoWindow>
       </Map>
     );
