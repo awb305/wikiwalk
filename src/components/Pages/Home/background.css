@@ -1,6 +1,9 @@
-.background {
+html, body {
+  height: 100%;
   background-image: url('./../../../styles/images/skyline.svg');
   background-position: right bottom;
   background-attachment: fixed;
   background-repeat: repeat-x;
+  background-color: #e2edf3;
+  height: 100%;
 }

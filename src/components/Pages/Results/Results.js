@@ -11,6 +11,9 @@ import Paper from '@material-ui/core/Paper';
 import './background.css'
 
 const styles = theme => ({
+  root: {
+    height: '100%'
+  },
   toolbar: theme.mixins.toolbar, 
   container: {
     [theme.breakpoints.up('lg')]: {
@@ -44,7 +47,7 @@ class Results extends Component {
 
   getResults = favorites => {
     if(favorites){
-      DB.getFavorites(this.props.userId.split('|')[1])
+      DB.getFavorites(this.props.userId)
         .then(res => {
           this.setState({data: res.data});
         });
@@ -144,13 +147,16 @@ const {classes, favs } = this.props;
 let content = this.generateContent(this.state.data);
 
 return(
-      <div className="background">
+      <div>
         <Navbar logout={this.props.logout} userId={this.props.userId} username={this.props.username} setPage={this.props.setPage}/>
         <div className={classes.toolbar}>
           <div className={ classes.container }>
           <Typography variant="display2" className={classes.header}>
             {favs ? "Favorites" : "Results"}
           </Typography>
+
+          {this.props.favs ? null:  
+          
           <Grid container alignItems="center" justify="center">
             <Grid item xs={10}>
               <Paper className={classes.map}>
@@ -162,6 +168,9 @@ return(
               </Paper>
             </Grid> 
           </Grid>
+        
+        }
+         
           {content}
           </div>
         </div>
