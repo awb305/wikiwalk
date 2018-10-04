@@ -5,11 +5,14 @@ import Result from './Result';
 import { Typography } from '@material-ui/core';
 import DB from './../../../utils/DB';
 import API from '../../../utils/API';
+import GoogleMapsContainer from './GoogleMaps/GoogleMaps';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import './background.css'
 
 const styles = theme => ({
   toolbar: theme.mixins.toolbar, 
   container: {
-    backgroundColor: theme.palette.background.default,
     [theme.breakpoints.up('lg')]: {
       margin: 'auto',
       width: '75%'
@@ -18,8 +21,12 @@ const styles = theme => ({
   header: {
     ...theme.mixins.gutters(),
     marginTop: theme.spacing.unit * 2,
-    
   }, 
+  map: {
+    marginTop: theme.spacing.unit * 2,
+    position: 'relative',
+    height: '300px'
+  }
 });
 
 
@@ -28,6 +35,8 @@ class Results extends Component {
     geoArray: [],
     idArray: [],
     content: {},
+    lon: null,
+    lat: null,
     data: [],
     radius: 10000,
     limit: 10
@@ -37,15 +46,22 @@ class Results extends Component {
     if(favorites){
       DB.getFavorites(this.props.userId.split('|')[1])
         .then(res => {
-          console.log('response', res.data)
           this.setState({data: res.data});
-          console.log(this.state.data)
         });
     }else{
       this.search();
     }
   }
 
+  pageIdArray = () => {
+    const idArray = [];
+    this.geoArray.forEach(element => {
+      idArray.push(element.pageid);
+    });
+    this.setState({
+      idArray: idArray,
+    });
+  };
   componentDidMount() { 
     this.getResults(this.props.favs);
   }
@@ -58,6 +74,10 @@ class Results extends Component {
   search = () => {
     let lat = this.props.lat;
     let lon = this.props.lon;
+    this.setState({
+      lat: lat,
+      lon: lon
+    });
 
 
     API.geoSearch(lat, lon, this.state.radius, this.state.limit)
@@ -67,14 +87,13 @@ class Results extends Component {
         geoArray.forEach(element => idArray.push(element.pageid));
         this.setState({
           geoArray: geoArray,
-          idArray: idArray
+          idArray: idArray,
         });
         return idArray;
       })
       .then(idArray => {
         if(idArray.length > 0){
         API.idSearch(idArray).then(res => {
-          console.log(res);
           const data= res.data.query.pages;
 
           let content = [];
@@ -125,13 +144,24 @@ const {classes, favs } = this.props;
 let content = this.generateContent(this.state.data);
 
 return(
-      <div>
+      <div className="background">
         <Navbar logout={this.props.logout} userId={this.props.userId} username={this.props.username} setPage={this.props.setPage}/>
         <div className={classes.toolbar}>
           <div className={ classes.container }>
           <Typography variant="display2" className={classes.header}>
             {favs ? "Favorites" : "Results"}
           </Typography>
+          <Grid container alignItems="center" justify="center">
+            <Grid item xs={10}>
+              <Paper className={classes.map}>
+                <GoogleMapsContainer
+                  geoArray={this.state.geoArray} 
+                  lat={this.state.lat} 
+                  lon={this.state.lon}
+                />
+              </Paper>
+            </Grid> 
+          </Grid>
           {content}
           </div>
         </div>
