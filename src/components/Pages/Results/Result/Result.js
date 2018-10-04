@@ -59,20 +59,16 @@ class Header extends React.Component {
     const article = this.props.data
     DB.getUserData(this.props.data.user_id)
       .then(res => {
-        console.log('user favs: ', res)
         return res.data.filter(fav => fav.page_id == article.page_id)[0];
       }).then(match => {
         if(match){
-          console.log(match);
           const newfav = !match.favorited;
           DB.putFavorite(match.user_id, match.id, newfav)
             .then(res => {
-              console.log(res);
             });
         }else{
           DB.postFavorite(this.props.data)
             .then(res => {
-              console.log(res);
             });
         }
       }).then(() => {
@@ -190,7 +186,6 @@ class Result extends React.Component {
       favorited: true
     }
     const collapsed = this.state.collapsed
-    console.log(data);
     return (
       <div>
         <Paper className={classes.root}>
