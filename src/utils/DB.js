@@ -5,7 +5,7 @@ import { rejects } from 'assert';
 export default {
 
   getFavorites: function (userId) {
-    let url ='http://wikiwalking.azurewebsites.net/api/wikiResults/' + userId + '/true';
+    let url ='https://wikiwalking.azurewebsites.net/api/wikiResults/' + userId + '/true';
     return new Promise(function(resolve, reject) {
       return axios.get(url)
         .then(function (res) {
@@ -19,7 +19,7 @@ export default {
   }, 
 
   getUserData: function (userId) {
-    let url ='http://wikiwalking.azurewebsites.net/api/wikiResults/' + userId;
+    let url ='https://wikiwalking.azurewebsites.net/api/wikiResults/' + userId;
     return new Promise(function(resolve, reject) {
       return axios.get(url)
         .then(function (res) {
@@ -33,7 +33,7 @@ export default {
   },
 
   postFavorite: function (data) {
-    let url = 'http://wikiwalking.azurewebsites.net/api/wikiResults';
+    let url = 'https://wikiwalking.azurewebsites.net/api/wikiResults';
     return new Promise(function(resolve, reject) {
       console.log('data passed', data)
       return axios.post(url, data)
@@ -48,7 +48,7 @@ export default {
   },
 
   putFavorite: function (userId, articleId, newFav) {
-    let url = `http://wikiwalking.azurewebsites.net/api/wikiResults/${userId}/${articleId}`
+    let url = `https://wikiwalking.azurewebsites.net/api/wikiResults/${userId}/${articleId}`
     return new Promise(function(resolve, reject) {
       let favVal = 0;
       if(newFav == true){
