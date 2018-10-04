@@ -53,7 +53,7 @@ const Landing = props => {
   const { classes } = props;
   return(
     <div className={classes.root}>
-      <Navbar logout={props.logout} userId={props.userId} username={props.username} setPage={props.setPage}/>
+      <Navbar/>
       
       <div className={classes.container}>
         <div>

@@ -37,7 +37,7 @@ class Results extends Component {
 
   componentDidMount() {
     
-    if(this.props.favs){
+    if(this.props.displayToggle !== 'results'){
       DB.getFavorites('114167404198811874512')
         .then(res => {
           console.log(res);
@@ -153,7 +153,8 @@ return(
 
 const mapStateToProps = state => ({
   lat: state.coords.lat,
-  lon: state.coords.lon
+  lon: state.coords.lon,
+  displayToggle: state.displayToggle
 });
 
 // makes the 'onSetUserId' to the prop that corresponds to the setUserId which was imported from actions

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
 import Popover from '@material-ui/core/Popover';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
@@ -13,6 +14,11 @@ import FavoriteIcon from '@material-ui/icons/FavoriteOutlined';
 import DeveloperBoardIcon from '@material-ui/icons/DeveloperBoard';
 import SearchIcon from '@material-ui/icons/Search';
 import UserIcon from './UserIcon';
+import { compose } from 'recompose';
+
+import { connect } from 'react-redux';
+import { setDisplayToggle } from '../../actions/setDisplayToggle-action';
+
 
 
 const styles = theme => ({
@@ -43,6 +49,16 @@ class UserMenu extends React.Component {
     this.setState({
       anchorEl: null
     })
+  }
+
+  resultsHandler = () => {
+    this.props.onSetDisplayToggle('results');
+    this.props.history.push('/results')
+  }
+
+  savedHandler = () => {
+    this.props.onSetDisplayToggle('saved');
+    this.props.history.push('/results')
   }
 
   render() {
@@ -89,7 +105,8 @@ class UserMenu extends React.Component {
                 <ListItemText primary={`User ID: ${this.props.userId}`} />
               </ListItem>
               <Divider />
-              <ListItem button onClick={() => this.props.setPage('favorites')}>
+              {/* <ListItem button onClick={() => this.props.setPage('favorites')}> */}
+              <ListItem button onClick={this.resultsHandler}>
                 <ListItemIcon>
                   <FavoriteIcon />
                 </ListItemIcon>
@@ -121,4 +138,19 @@ UserMenu.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(UserMenu);
+/* export default withStyles(styles)(UserMenu); */
+
+const mapStateToProps = state => ({
+  userId: state.userId
+});
+
+const mapActionsToProps = {
+  onSetDisplayToggle: setDisplayToggle
+};
+
+
+
+export default compose(
+  withStyles(styles, {name: 'UserMenu'}),
+  withRouter(UserMenu),
+  connect(mapStateToProps, mapActionsToProps))(UserMenu);

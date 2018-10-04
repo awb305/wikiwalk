@@ -35,15 +35,6 @@ class Auth0 extends Component {
     this.props.onSetUserId("loggedOut");
   };
 
-  LoginHandler = () => {
-    if(this.props.userId === 'loggedOut'){
-      auth0Client.signIn();
-    }else{
-      this.props.logout();
-      this.forceUpdate;
-    };
-  }
-
   signIn = () => {
     let token = auth0Client.getIdToken();
     (token === undefined || token === null ) && auth0Client.signIn();

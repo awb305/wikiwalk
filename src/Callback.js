@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
+/* import { withStyles } from '@material-ui/core/styles'; */
+import { Redirect } from 'react-router-dom';
 import auth0Client from './utils/Auth';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Logo from './components/Logo';
+import { compose } from 'recompose';
 
-const styles = theme =>({
+/* const styles = theme =>({
   loadingCard: {
     padding: '4rem',
     margin: 'auto',
@@ -19,21 +21,35 @@ const styles = theme =>({
     fontSize: '150px',
     color: theme.palette.primary.main
   }
-});
+}); */
 
 class Callback extends Component {
+
+  state = {
+    callback: false
+  }
+
+
+  
+
   async componentDidMount() {
     await auth0Client.handleAuthentication();
-    this.props.history.replace('/home');
+    /* this.setState({
+      callback: true
+    }) */
+    this.props.history.push('/');
   }
 
   render() {
-    const { classes } = this.props;
+    /* if(this.state.callback) {
+      return <Redirect to='/results'/>
+    }else{ */
+      /* const { classes } = this.props; */
     return (
-      <Paper className={classes.loadingCard}>
+      <Paper /* className={classes.loadingCard} */>
         <Grid container direction="column" alignItems="center" justify="center">
           <Grid item >
-            <Logo class={classes.logo}/>
+            <Logo /* class={classes.logo} *//>
           </Grid>
           <Grid item>
             <Typography variant="display2">Loading profile...</Typography>
@@ -41,7 +57,12 @@ class Callback extends Component {
         </Grid>
       </Paper>
     );
-  }
-}
 
-export default withStyles(styles)(withRouter(Callback));
+    }
+
+  }
+/* } */
+
+export default withRouter(Callback);
+
+

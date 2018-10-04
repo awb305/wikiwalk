@@ -8,27 +8,12 @@ import { Provider } from 'react-redux';
 
 import setUserIdReducer from './reducers/setUserId-reducer';
 import setCoordsReducer from './reducers/setCoords-reducer';
-
-/* import productsReducer from './reducers/products-reducer';
-import userReducer from './reducers/user-reducer';
- */
-const reducer = () => {
-  return {
-    userId: 'hey',
-    page: 'home',
-    lon: -80.8431,
-    lat: 35.2271
-  }
-}
-
-/* const allReducers = combineReducers({
-  products: productsReducer,
-  user: userReducer
-}); */
+import setDisplayToggleReducer from './reducers/setDisplayToggle-reducer';
 
 const allReducers = combineReducers({
   userId: setUserIdReducer,
-  coords: setCoordsReducer
+  coords: setCoordsReducer,
+  displayToggle: setDisplayToggleReducer
 });
 
 const store = createStore(
@@ -38,7 +23,8 @@ const store = createStore(
     coords: {
       lat: 35.2271,
       lon: -80.8431
-    }
+    },
+    displayToggle: 'results'
   },
   window.devToolsExtension && window.devToolsExtension()
 );
