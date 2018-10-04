@@ -14,15 +14,22 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     padding: '0.75rem',
-  }
+    "&:hover": {
+      backgroundColor: theme.palette.secondary.main
+    }
+  },
+  
 });
+
 
 const CoolBtn = props => {
   const { classes } = props;
   return (
+    <div className="sensorItem">
     <Button 
       variant="fab"
       className={classes.coolBtn}
+      onClick={props.click}
     >
       <Typography variant="display3" color="inherit" align="center">
         Show Me
@@ -31,6 +38,7 @@ const CoolBtn = props => {
         <br />Near Me
       </Typography>
     </Button>
+    </div>
   );
 };
 
