@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Logo from './../../Logo';
 import Button from '@material-ui/core/Button';
 import SkylineSVG from './skyline.svg';
+import auth0Client from '../../../utils/Auth';
 
 
 
@@ -48,6 +49,7 @@ const styles = theme => ({
 
 });
 
+
 const Landing = props => {
   const { classes } = props;
   return(
@@ -84,7 +86,7 @@ const Landing = props => {
           </Typography>
         </Grid>
         <Grid item>
-          <Button color="secondary" variant="contained" className={classes.margins}>Click here to Login or Signup!</Button>
+          <Button color="secondary" variant="contained" onClick={auth0Client.signIn} className={classes.margins}>Click here to Login or Signup!</Button>
         </Grid>
       </Grid>
       </div>
