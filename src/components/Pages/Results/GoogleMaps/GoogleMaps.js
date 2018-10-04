@@ -3,6 +3,9 @@ import { GoogleApiWrapper, InfoWindow, Map, Marker } from 'google-maps-react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { relative } from 'path';
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+
 
 class GoogleMapsContainer extends React.Component {
   constructor(props) {
@@ -35,47 +38,50 @@ class GoogleMapsContainer extends React.Component {
     const style = {
         width: '100%',
         height: '100%',
-        position: 'relative'
+        margin: 'auto',
+        position: 'relative',
+        zIndex: '0',
+        borderRadius: '5px',
       }
     return (
-      <Map
-        item
-        xs = { 12 }
-        style = { style }
-        google = { this.props.google }
-        onClick = { this.onMapClick }
-        zoom = { 16 }
-        initialCenter = {{ lat: this.props.lat, lng: this.props.lon }}
-      >
-      {
-        this.props.geoArray.map((element) => {
-          if (element.lat === null || element.lon === null) {
-            return null;
-          } else {
-            return <Marker
-            key = { element.pageid }
-            onClick = { this.onMarkerClick }
-            title = { element.title }
-            position = {{ lat: element.lat, lng: element.lon }}
-            name = { element.title }
-          />
+          <Map
+            item
+            xs = { 12 }
+            style = { style }
+            google = { this.props.google }
+            onClick = { this.onMapClick }
+            zoom = { 16 }
+            initialCenter = {{ lat: this.props.lat, lng: this.props.lon }}
+          >
+          {
+            this.props.geoArray.map((element) => {
+              if (element.lat === null || element.lon === null) {
+                return null;
+              } else {
+                return <Marker
+                key = { element.pageid }
+                onClick = { this.onMarkerClick }
+                title = { element.title }
+                position = {{ lat: element.lat, lng: element.lon }}
+                name = { element.title }
+              />
+              }
+            })
           }
-        })
-      }
-        <InfoWindow
-          marker = { this.state.activeMarker }
-          visible = { this.state.showingInfoWindow }
-        >
-          <Paper>
-            <Typography
-              variant = 'headline'
-              component = 'h4'
+            <InfoWindow
+              marker = { this.state.activeMarker }
+              visible = { this.state.showingInfoWindow }
             >
-              Location
-            </Typography>
-          </Paper>
-        </InfoWindow>
-      </Map>
+              <Paper>
+                <Typography
+                  variant = 'headline'
+                  component = 'h4'
+                >
+                  Location
+                </Typography>
+              </Paper>
+            </InfoWindow>
+          </Map>
     );
   }
 }

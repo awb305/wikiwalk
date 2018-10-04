@@ -6,14 +6,19 @@ import { Typography } from '@material-ui/core';
 import DB from './../../../utils/DB';
 import API from '../../../utils/API';
 import GoogleMapsContainer from './GoogleMaps/GoogleMaps';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
   toolbar: theme.mixins.toolbar, 
   header: {
     ...theme.mixins.gutters(),
     marginTop: theme.spacing.unit * 2,
-    
   }, 
+  map: {
+    position: 'relative',
+    height: '300px'
+  }
 });
 
 
@@ -120,20 +125,37 @@ const {classes, favs } = this.props;
 let contentArray = this.renderContent();
 let content = contentArray.map(article => {
   return(
-    <Result title={article.title} body={article.extract} /* breadcrumb={article.breadcrumb} */ url={article.fullurl} key={article.pageid} /* favorited={article.favorited} *//>
+    <Result 
+      title={article.title} 
+      body={article.extract} 
+      /* breadcrumb={article.breadcrumb} */ 
+      url={article.fullurl} 
+      key={article.pageid} 
+      /* favorited={article.favorited} */
+    />
   )
 });
 console.log('hit ', this.state.geoArray);
 return(
       <div>
         <Navbar logout={this.props.logout} userId={this.props.userId} />
-        <GoogleMapsContainer
-          geoArray={this.state.geoArray} lat={this.state.lat} lon={this.state.lon}
-        />
         <div className={ classes.toolbar }>
+        
         <Typography variant="display2" className={classes.header}>
           {favs ? "Favorites" : "Results"}
         </Typography>
+        <Grid container alignItems="center" justify="center">
+          <Grid item xs={12} md={8}>
+            <Paper className={classes.map}>
+              <GoogleMapsContainer
+                geoArray={this.state.geoArray} 
+                lat={this.state.lat} 
+                lon={this.state.lon}
+              />
+            </Paper>
+          </Grid> 
+        </Grid>
+        
         {content}
         </div>
       </div>
