@@ -70,7 +70,7 @@ class GoogleMapsContainer extends React.Component {
               variant = 'headline'
               component = 'h4'
             >
-              {console.log('title ', this.props.geoArray[0])}
+            {this.props.name}
             </Typography>
           </Paper>
         </InfoWindow>
