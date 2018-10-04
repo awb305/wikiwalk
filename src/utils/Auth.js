@@ -6,7 +6,7 @@ class Auth {
       domain: 'tjordanwells.auth0.com',
       audience: 'https://tjordanwells.auth0.com/userinfo',
       clientID: 'fzCTzSPGJc4GGRp0NKBOVuTWhi3jWvk6',
-      redirectUri: 'https://polar-reaches-51925.herokuapp.com//callback',
+      redirectUri: 'https://polar-reaches-51925.herokuapp.com/callback',
       responseType: 'token id_token',
       scope: 'openid profile'
     });
