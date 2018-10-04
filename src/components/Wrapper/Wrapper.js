@@ -101,6 +101,8 @@ class Wrapper extends React.Component {
     //console.log(this.state.lon);
     //console.log(this.state.username);
 
+    return <Landing></Landing>
+
     // currently doing conditional redendring andrew looking into redux
     if (this.state.page === 'landing') {
       return (

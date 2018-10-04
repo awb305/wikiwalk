@@ -8,6 +8,10 @@ import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import Button from '@material-ui/core/Button'
 import auth0Client from '../../utils/Auth';
 import Popover from './Popover';
+import { compose } from 'recompose';
+
+import { connect } from 'react-redux';
+import { setUserId } from '../../actions/setUserId-action';
 
 const styles = theme => ({
   loginBtn: {
@@ -22,10 +26,13 @@ const styles = theme => ({
   }
 });
 
+
+
 class Auth0 extends Component {
-  signOut = props => {
+
+  signOut = () => {
     auth0Client.signOut();
-    props.history.replace('/');
+    this.props.onSetUserId("loggedOut");
   };
 
   LoginHandler = () => {
@@ -34,22 +41,27 @@ class Auth0 extends Component {
     }else{
       this.props.logout();
       this.forceUpdate;
-    }
+    };
+  }
+
+  signIn = () => {
+    let token = auth0Client.getIdToken();
+    (token === undefined || token === null ) && auth0Client.signIn();
   };
 
-  render() {
+  render(){
     const { classes } = this.props;
     return (
       <div>
         {
           !auth0Client.isAuthenticated() &&
-          <Button color="secondary" className={classes.loginBtn} variant="contained" onClick={this.LoginHandler}>Sign In</Button>
+          <Button color="secondary" className={classes.loginBtn}  variant="contained" onClick={this.signIn}>Sign In</Button>
         }
         {
           auth0Client.isAuthenticated() &&
           <div>
             <Popover userId={this.props.userId} username={this.props.username} setPage={this.props.setPage}>
-              <ListItem button onClick={this.LoginHandler}>
+              <ListItem button onClick={this.signOut}>
                 <ListItemIcon>
                   <MeetingRoomIcon />
                 </ListItemIcon>
@@ -63,4 +75,20 @@ class Auth0 extends Component {
   }
 }
 
-export default withStyles(styles) (withRouter(Auth0));
+
+
+//Redux
+
+const mapStateToProps = state => ({
+  userId: state.userId
+});
+
+const mapActionsToProps = {
+  onSetUserId: setUserId
+};
+
+
+
+export default compose(
+  withStyles(styles, {name: 'Auth0'}),
+  connect(mapStateToProps, mapActionsToProps))(Auth0);

@@ -24,7 +24,7 @@ const styles = theme =>({
 class Callback extends Component {
   async componentDidMount() {
     await auth0Client.handleAuthentication();
-    this.props.history.replace('/');
+    this.props.history.replace('/home');
   }
 
   render() {
